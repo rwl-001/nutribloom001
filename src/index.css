@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #fbf9f5;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  }
+  
+  body {
+    overscroll-behavior-y: none;
+    color: #1b1c1a;
+  }
+
+  .pb-safe {
+    padding-bottom: max(env(safe-area-inset-bottom, 0px), 1rem);
+  }
+
+  .pt-safe {
+    padding-top: max(env(safe-area-inset-top, 0px), 0px);
+  }
+}
+
+/* Custom scrollbar hiding */
+::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Material Symbols fill variation utility */
+.icon-filled {
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.icon-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Tabular figures for clinical metrics */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Soft biophilic shadow */
+.shadow-botanical {
+  box-shadow: 0 4px 24px -2px rgba(30, 45, 36, 0.06), 0 2px 8px -1px rgba(30, 45, 36, 0.04);
+}
+
+.shadow-botanical-lg {
+  box-shadow: 0 12px 32px -4px rgba(30, 45, 36, 0.08), 0 4px 12px -2px rgba(30, 45, 36, 0.05);
+}
+

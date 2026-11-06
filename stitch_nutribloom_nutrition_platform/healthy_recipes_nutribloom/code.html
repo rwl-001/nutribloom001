@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#fbf9f5;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-container-low": "#f5f3ef", "background": "#fbf9f5", "on-background": "#1b1c1a", "on-tertiary": "#ffffff", "primary": "#294b37", "surface-container-high": "#eae8e4", "on-error-container": "#93000a", "outline": "#727972", "on-primary-fixed": "#002111", "on-tertiary-container": "#e7d1bf", "on-error": "#ffffff", "inverse-on-surface": "#f2f0ed", "surface-tint": "#436650", "secondary": "#41674c", "surface-container-highest": "#e4e2de", "surface": "#fbf9f5", "secondary-fixed-dim": "#a7d1b0", "on-tertiary-fixed-variant": "#534437", "secondary-container": "#c2edcb", "surface-dim": "#dbdad6", "surface-container": "#efeeea", "on-secondary-container": "#466d52", "inverse-surface": "#30312e", "on-surface-variant": "#424843", "primary-fixed": "#c4ecd0", "on-secondary-fixed-variant": "#294e36", "surface-container-lowest": "#ffffff", "error": "#ba1a1a", "on-tertiary-fixed": "#25190f", "on-secondary": "#ffffff", "outline-variant": "#c1c8c1", "inverse-primary": "#a9d0b4", "secondary-fixed": "#c2edcb", "tertiary-container": "#69594b", "on-primary-container": "#b6ddc2", "tertiary-fixed": "#f5decd", "on-primary-fixed-variant": "#2b4e39", "on-primary": "#ffffff", "error-container": "#ffdad6", "on-secondary-fixed": "#00210f", "tertiary-fixed-dim": "#d8c3b2", "on-surface": "#1b1c1a", "tertiary": "#504235", "surface-variant": "#e4e2de", "primary-container": "#40634d", "primary-fixed-dim": "#a9d0b4", "surface-bright": "#fbf9f5" }, borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, spacing: { "margin-mobile": "1.25rem", "gutter": "1.5rem", "space-md": "1rem", "space-sm": "0.5rem", "space-lg": "1.75rem", "space-xs": "0.25rem", "space-xl": "2.5rem", "margin": "3rem", "gutter-mobile": "1rem" }, fontFamily: { "body-sm": ["Inter"], "label-sm": ["Inter"], "body-lg": ["Inter"], "label-lg": ["Inter"], "headline-md": ["Inter"], "display-lg-mobile": ["Inter"], "body-md": ["Inter"], "headline-sm": ["Inter"], "headline-lg": ["Inter"], "label-md": ["Inter"], "headline-lg-mobile": ["Inter"], "display-lg": ["Inter"] }, fontSize: { "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "500" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }], "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "display-lg": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "600" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface flex flex-col min-h-screen selection:bg-secondary-container selection:text-on-secondary-container"><header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-margin-mobile flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="NutriBloom Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCy_5oAJNxizI6mknboH1js2y5EXgsfa1A2swQCuOeIyA4gBUBQNd2MfCaPJEeGJpGHrDIBqz1xWfO3ywxYzVqPaDGEoCJXfpwg7ycK516pnc1Ugah6D3lnqwbaFlwjA8hFxx8FSVo6r5MaPuYY1R8RXLzHGoTepEivcdmjNj4lqjqvIPOCowJFQOVHggL1n8irgl8YVEJjBE_iiZ-9ZYRjcQNPeCO6865y49G-P7Q"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-primary leading-tight">NutriBloom</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Healthy Recipes</span></div></div><div class="flex items-center gap-space-sm"><a class="w-11 h-11 rounded-full flex items-center justify-center text-primary bg-surface-container-low hover:bg-surface-container transition-colors" data-path="quick-consultation" href="#"><span class="material-symbols-outlined text-[20px]">support_agent</span></a><div class="relative flex items-center justify-center w-11 h-11"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBT4RS1mTuRrwuinfptanyYURw65KDVtsxT2HfMoT_JLkgS_nhSyMFsOW13hGl4QRGXpaLggX477Go2SukuJ_XMgYxUIJnhzS7lEy4U6MKCB7f_SywwPXp-DlnHSMsMVHxnrgiDbd3b_ktkl0VJ7wZ5Kieod39tTsziltdFTx0R-A8a3Z5B1savXFl4DZuNzy08DxzspFs3UA8lJy9V85EXHrATYEGh6KxpLuF6X8Y"/><span class="absolute top-1.5 right-1.5 flex h-2.5 w-2.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span><span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-secondary"></span></span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Header Intro Section -->
+<section class="px-margin-mobile pt-space-md pb-space-sm flex flex-col">
+<div class="inline-flex items-center gap-space-xs self-start px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm mb-space-xs shadow-sm">
+<span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">nutrition</span>
+<span>Holistic Culinary Rx</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary tracking-tight leading-tight">
+      Healthy Eating Made Delicious
+    </h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1.5 leading-relaxed">
+      Dietitian-approved, nutrient-dense recipes made with fresh whole foods. Easy to prepare, delicious to savor.
+    </p>
+</section>
+<!-- Search & Filter Bar Sticky Deck -->
+<section class="px-margin-mobile pt-space-xs pb-space-sm flex flex-col gap-space-sm">
+<!-- Search Input -->
+<div class="relative w-full shadow-sm rounded-DEFAULT">
+<div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-primary">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full pl-10 pr-10 py-3 bg-surface-container-lowest text-on-surface rounded-DEFAULT font-body-sm text-body-sm placeholder:text-outline transition-all focus:outline-none focus:ring-2 focus:ring-secondary/20 shadow-[0_2px_12px_rgba(30,45,36,0.04)]" id="recipe-search" placeholder="Search healthy recipes, ingredients..." type="search"/>
+<button aria-label="Clear search" class="absolute inset-y-0 right-0 pr-3 flex items-center text-outline hover:text-primary transition-colors hidden" id="clear-search-btn">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Category Filter Pills (Horizontal Scroll) -->
+<div class="flex items-center gap-2 overflow-x-auto pb-1 -mx-margin-mobile px-margin-mobile no-scrollbar" id="category-pills">
+<button class="filter-pill flex items-center gap-1.5 px-4 py-2 rounded-full font-label-md text-label-md transition-all shadow-sm shrink-0 bg-primary text-on-primary" data-category="all">
+<span class="material-symbols-outlined text-[16px]">all_inclusive</span>
+<span>All</span>
+</button>
+<button class="filter-pill flex items-center gap-1.5 px-4 py-2 rounded-full font-label-md text-label-md transition-all shadow-sm shrink-0 bg-surface-container-low text-on-surface-variant hover:bg-surface-container" data-category="breakfast">
+<span class="material-symbols-outlined text-[16px]">bakery_dining</span>
+<span>Breakfast</span>
+</button>
+<button class="filter-pill flex items-center gap-1.5 px-4 py-2 rounded-full font-label-md text-label-md transition-all shadow-sm shrink-0 bg-surface-container-low text-on-surface-variant hover:bg-surface-container" data-category="lunch">
+<span class="material-symbols-outlined text-[16px]">lunch_dining</span>
+<span>Lunch</span>
+</button>
+<button class="filter-pill flex items-center gap-1.5 px-4 py-2 rounded-full font-label-md text-label-md transition-all shadow-sm shrink-0 bg-surface-container-low text-on-surface-variant hover:bg-surface-container" data-category="dinner">
+<span class="material-symbols-outlined text-[16px]">dinner_dining</span>
+<span>Dinner</span>
+</button>
+<button class="filter-pill flex items-center gap-1.5 px-4 py-2 rounded-full font-label-md text-label-md transition-all shadow-sm shrink-0 bg-surface-container-low text-on-surface-variant hover:bg-surface-container" data-category="snacks">
+<span class="material-symbols-outlined text-[16px]">local_cafe</span>
+<span>Snacks</span>
+</button>
+</div>
+</section>
+<!-- Recipe Counter & Quick Filter Summary -->
+<div class="px-margin-mobile py-space-xs flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm" id="recipe-count">Showing 6 curated recipes</span>
+<span class="font-label-sm text-label-sm flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+      Clinical Vetted
+    </span>
+</div>
+<!-- Featured Recipe Cards Grid -->
+<section class="px-margin-mobile py-space-xs grid grid-cols-1 gap-4" id="recipe-grid">
+<!-- Recipe 1 -->
+<article class="recipe-card bg-surface-container-lowest rounded-lg p-3.5 flex flex-col gap-3 shadow-[0_4px_24px_rgba(30,45,36,0.05)] transition-all" data-category="breakfast" data-ingredients="rolled oats blueberries chia seeds bananas almond slivers milk" data-title="Oats Breakfast Bowl">
+<div class="relative w-full h-44 rounded-DEFAULT overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A warm, overhead view of a creamy oatmeal breakfast bowl in a hand-crafted ceramic bowl on a warm alabaster linen table. Topped generously with fresh blueberries, dark chia seeds, neat banana slices, and slivered toasted almonds. Soft morning sunlight filtering in with natural botanical styling in muted sage and soft terracotta tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAycvckG_c8r_QuqwQFDSzX6D74IufNK6GDkVXOuu7M-rSE0fBvJbI_tLlEM-pngv0FmdaRmMuNmpsT4J__ee_8Uz1CDxn34i1k27GsUCcaOtQJ-joY2_itocKnbOdGMgLsLy2cqmdX_9HidpUlifc1V_R1-y8qxU-wlZyGv7dFJBbcvkhZKEIOswJv0QgBZtcrFU1xbcgcOQP0iHSuwWMbzLBjZ0_H3LevCW_A5uo"/>
+<div class="absolute top-2.5 left-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-primary font-label-sm text-label-sm shadow-sm">
+<span class="material-symbols-outlined text-[14px]">wb_twilight</span>
+<span>Breakfast</span>
+</div>
+<div class="absolute bottom-2.5 right-2.5 flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/90 backdrop-blur-md text-on-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+<span>310 kcal</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5 px-1">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Oats Breakfast Bowl</h2>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>10 mins</span>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-wrap mt-0.5">
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-medium">
+            High Fiber • Heart Healthy
+          </span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+            11g Protein
+          </span>
+</div>
+</div>
+</article>
+<!-- Recipe 2 (Focus / Spotlight Origin) -->
+<article class="recipe-card bg-surface-container-lowest rounded-lg p-3.5 flex flex-col gap-3 shadow-[0_4px_24px_rgba(30,45,36,0.05)] transition-all" data-category="lunch" data-ingredients="cottage cheese paneer cucumber cherry tomatoes herbs lemon olive oil" data-title="Paneer Protein Salad">
+<div class="relative w-full h-44 rounded-DEFAULT overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="An artisanal culinary plate of diced fresh paneer cottage cheese tossed with sliced crisp English cucumber, glossy cherry tomato halves, mint leaves, and a golden extra virgin olive oil lemon glaze. High-end food photography style with soft ambient lighting on a muted sandstone counter with botanical sage accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcmDWTMX0QiyZ8OTdiZ6_Kr74wfEKsaL9QjxDbZaiVnjecJl8kN6sSNBbI-vvZC-9nNYJBBY36fXydiLWnKqAbz8fGKIwcrFIWtoCQUGv8vZnUD0k8Cwi-KpcaKTALWe-BhC5XWaW3_x1Ay1yesHi-PLmN2ldOU2lqKnqs_ylP3fjqeUsyPt39U340M66Nx4rdW0xy74hkPchwErK2hQdGrNgbNvA9tj4l1GN_jag"/>
+<div class="absolute top-2.5 left-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-primary font-label-sm text-label-sm shadow-sm">
+<span class="material-symbols-outlined text-[14px]">lunch_dining</span>
+<span>Lunch</span>
+</div>
+<div class="absolute bottom-2.5 right-2.5 flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/90 backdrop-blur-md text-on-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+<span>385 kcal</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5 px-1">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Paneer Protein Salad</h2>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>15 mins</span>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-wrap mt-0.5">
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-medium">
+            24g Protein • Vegetarian
+          </span>
+<span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-sm text-label-sm">
+            Spotlight Pick
+          </span>
+</div>
+</div>
+</article>
+<!-- Recipe 3 -->
+<article class="recipe-card bg-surface-container-lowest rounded-lg p-3.5 flex flex-col gap-3 shadow-[0_4px_24px_rgba(30,45,36,0.05)] transition-all" data-category="dinner" data-ingredients="yellow lentil rice turmeric cumin spinach carrots gut healing" data-title="Vegetable Khichdi">
+<div class="relative w-full h-44 rounded-DEFAULT overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A comforting, warm earthenware pot filled with wholesome yellow moong lentil and brown rice khichdi seasoned with golden turmeric, toasted cumin seeds, baby spinach ribbons, and diced orange carrots. Steaming gently with an earthy, therapeutic ayurvedic presentation on a clean minimalist surface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuArfxXqi8WWIaC-p8pjlmu5-Z9fuxJJANI_rZmHvL5IKP45rFG3DV8WD24kO6quMVJlZQqpjEn7PEgHJIBhQ6pFSlrdUN0auTbfTJFkLAO6IgrdMm0NNUgfwwgKj7HyZJh5uD2yKqNb4KqK35bkoe1rs30qSeGorJWhH4C7LnBv4AsB4Si2ES0mV1pnSIqnkeKC0opx6_b_yxNBPmvle7uF4hpN7m_ERX7vfMgfjfs"/>
+<div class="absolute top-2.5 left-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-primary font-label-sm text-label-sm shadow-sm">
+<span class="material-symbols-outlined text-[14px]">dinner_dining</span>
+<span>Dinner</span>
+</div>
+<div class="absolute bottom-2.5 right-2.5 flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/90 backdrop-blur-md text-on-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+<span>340 kcal</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5 px-1">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Vegetable Khichdi</h2>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>25 mins</span>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-wrap mt-0.5">
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-medium">
+            Gut Healing • Easy Digest
+          </span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+            14g Protein
+          </span>
+</div>
+</div>
+</article>
+<!-- Recipe 4 -->
+<article class="recipe-card bg-surface-container-lowest rounded-lg p-3.5 flex flex-col gap-3 shadow-[0_4px_24px_rgba(30,45,36,0.05)] transition-all" data-category="breakfast" data-ingredients="greek yogurt pomegranate arils kiwi raw honey hemp seeds" data-title="Fruit Yogurt Bowl">
+<div class="relative w-full h-44 rounded-DEFAULT overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="An aesthetic shallow white bowl filled with velvety thick Greek yogurt, arranged with glistening ruby pomegranate seeds, bright green kiwi fruit slices, a fine golden raw honey thread, and nutty hemp seeds. Clean daylight studio photography conveying biological freshness and morning tranquility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvqFPSmTTnbdMbphT21oqCq8lugin8IekV5tP8DYua2dOJGx5i5H7m2qvuF2gwFjFqTOct0Ed03gXWmQ761mLKCjNf1GvMAt7LEAa0wJUbpSqi58kMngWSMbBhH0K90nsZZdygmCw-sdQL5sNC4pL5usPK7fvpFU13ACsd5NZOsa4F-_x3DN42ScDrpBUegLK9NnE0JdfuE1OGnqtA4VZZZplyoqI-tu7kEM9IbYY"/>
+<div class="absolute top-2.5 left-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-primary font-label-sm text-label-sm shadow-sm">
+<span class="material-symbols-outlined text-[14px]">wb_twilight</span>
+<span>Breakfast</span>
+</div>
+<div class="absolute bottom-2.5 right-2.5 flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/90 backdrop-blur-md text-on-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+<span>260 kcal</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5 px-1">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Fruit Yogurt Bowl</h2>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>5 mins</span>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-wrap mt-0.5">
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-medium">
+            Probiotic Rich • Low Sugar
+          </span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+            18g Protein
+          </span>
+</div>
+</div>
+</article>
+<!-- Recipe 5 -->
+<article class="recipe-card bg-surface-container-lowest rounded-lg p-3.5 flex flex-col gap-3 shadow-[0_4px_24px_rgba(30,45,36,0.05)] transition-all" data-category="snacks" data-ingredients="sprouted moong beans chaat masala diced onions coriander fresh lime" data-title="Sprouts Chaat">
+<div class="relative w-full h-44 rounded-DEFAULT overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A vibrant salad bowl with crisp steamed sprouted green moong beans, finely chopped red onions, juicy tomato dice, fresh fragrant coriander leaves, and sprinkled roasted chaat spice, accented with a fresh lime wedge on an organic sand-colored tabletop with natural light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCGVfbG0RBTzwPPqPW4zgx7SvtpGoGOLczaDI51536oJtqIyN_97lFTNW9deqx7vaIBVYm0fYnrIY_gYb463VF8NrDdeHORkWoEi0N4GMP3dg6utHoMYRtqY-mH3qM1BDQ2dtfMkQ6OezEICfhCrhEf5G90rYPiewv50dBr2H_g4_jqul-SUTKGVNAeykU544TC5XXB3i2g0aN9y8jZfcKCZ6x6KGvClKFpdn7-efw"/>
+<div class="absolute top-2.5 left-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-primary font-label-sm text-label-sm shadow-sm">
+<span class="material-symbols-outlined text-[14px]">local_cafe</span>
+<span>Snacks</span>
+</div>
+<div class="absolute bottom-2.5 right-2.5 flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/90 backdrop-blur-md text-on-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+<span>190 kcal</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5 px-1">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Sprouts Chaat</h2>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>10 mins</span>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-wrap mt-0.5">
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-medium">
+            Immunity Boost • Zero Oil
+          </span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+            12g Protein
+          </span>
+</div>
+</div>
+</article>
+<!-- Recipe 6 -->
+<article class="recipe-card bg-surface-container-lowest rounded-lg p-3.5 flex flex-col gap-3 shadow-[0_4px_24px_rgba(30,45,36,0.05)] transition-all" data-category="snacks" data-ingredients="baby spinach green apple cucumber ginger coconut water" data-title="Healthy Green Glow Smoothie">
+<div class="relative w-full h-44 rounded-DEFAULT overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover" data-alt="A tall textured clear glass filled with an emerald green glow smoothie made from organic spinach, green apple slices, crisp cucumber, fresh ginger rhizome, and pure coconut water, with a bamboo straw and soft natural lighting in an airy Scandinavian wellness kitchen." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAggeIX1jVRrP-LlWViDjn95amd_aa1et4DFpwb8wP5Sc4abf2MDUlb5Spb7IiyYq3M4baTYchqyjXcPlBshLXeEI4gdnXW6KIPchI-tQsFn3gRCXZyIA2HgyCmO8mfP6CxPTvigCIGljv8KBC9GZKupSOqMzPA6uRF9Uk22v-xsAGhK0aq2S5Im4ULrS1hoCmhpsxnFCWGb7_O-8IKs2MWvz6WG-gwyVcCpk5JJJU"/>
+<div class="absolute top-2.5 left-2.5 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-primary font-label-sm text-label-sm shadow-sm">
+<span class="material-symbols-outlined text-[14px]">local_cafe</span>
+<span>Snacks</span>
+</div>
+<div class="absolute bottom-2.5 right-2.5 flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary/90 backdrop-blur-md text-on-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+<span>215 kcal</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5 px-1">
+<div class="flex items-center justify-between">
+<h2 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Healthy Green Glow Smoothie</h2>
+<div class="flex items-center gap-1 text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>5 mins</span>
+</div>
+</div>
+<div class="flex items-center gap-2 flex-wrap mt-0.5">
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-medium">
+            Detoxifying • Vitamin C
+          </span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">
+            6g Fiber
+          </span>
+</div>
+</div>
+</article>
+</section>
+<!-- Empty State (Hidden by default) -->
+<div class="hidden px-margin-mobile py-space-xl flex-col items-center text-center" id="no-recipes-found">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center text-primary mb-3">
+<span class="material-symbols-outlined text-[32px]">soup_kitchen</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">No recipes matched</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 max-w-xs">
+      Try searching for other wholesome ingredients like "oats", "paneer", or tap "All" to browse the full culinary collection.
+    </p>
+<button class="mt-4 px-5 py-2.5 rounded-full bg-primary text-on-primary font-label-md text-label-md" id="reset-filter-btn">
+      Reset All Filters
+    </button>
+</div>
+<!-- Featured Recipe Spotlight / Deep-Dive Section -->
+<section class="px-margin-mobile pt-space-lg pb-space-md">
+<div class="bg-surface-container-lowest rounded-lg p-5 shadow-[0_6px_28px_rgba(30,45,36,0.06)] flex flex-col gap-5">
+<!-- Spotlight Header Badge -->
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-medium">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span>Featured Recipe Spotlight</span>
+</div>
+<div class="flex items-center gap-1 text-secondary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">timer</span>
+<span>15 min total</span>
+</div>
+</div>
+<!-- Title & Intro -->
+<div>
+<h2 class="font-headline-md text-headline-md text-primary tracking-tight leading-snug">
+          Paneer Protein Salad – Complete Breakdown
+        </h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1 leading-relaxed">
+          Crafted by NutriBloom dietitians to deliver slow-digesting casein protein paired with crisp hydrating vegetables and cold-pressed botanical lipids.
+        </p>
+</div>
+<!-- Macronutrient Split Concentric Visual & Badges -->
+<div class="bg-surface-container-low rounded-DEFAULT p-4 flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Macro Distribution</span>
+<span class="font-label-sm text-label-sm text-primary font-medium">385 kcal total</span>
+</div>
+<!-- Inline SVG Macronutrient Split Gauge -->
+<div class="flex items-center gap-4">
+<div class="relative w-20 h-20 shrink-0 flex items-center justify-center">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<!-- Background Circle Track -->
+<circle cx="18" cy="18" fill="none" r="14" stroke="#E8F0EA" stroke-width="3.5"></circle>
+<!-- Carbs Arc (18g ~ 25%) stroke-dasharray="22 78" -->
+<circle cx="18" cy="18" fill="none" r="14" stroke="#69594b" stroke-dasharray="22 78" stroke-dashoffset="0" stroke-width="3.5"></circle>
+<!-- Fats Arc (14g ~ 30%) stroke-dasharray="26 74" -->
+<circle cx="18" cy="18" fill="none" r="14" stroke="#41674c" stroke-dasharray="26 74" stroke-dashoffset="-22" stroke-width="3.5"></circle>
+<!-- Protein Arc (24g ~ 45%) stroke-dasharray="39 61" -->
+<circle cx="18" cy="18" fill="none" r="14" stroke="#294b37" stroke-dasharray="39 61" stroke-dashoffset="-48" stroke-width="3.5"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+<span class="font-label-md text-label-md text-primary font-bold">24g</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant text-[9px] leading-none">Protein</span>
+</div>
+</div>
+<!-- Macro Metric Pills -->
+<div class="flex-1 grid grid-cols-3 gap-2">
+<div class="bg-surface-container-lowest p-2 rounded-DEFAULT flex flex-col items-center text-center shadow-xs">
+<span class="w-2 h-2 rounded-full bg-primary mb-1"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Protein</span>
+<span class="font-label-md text-label-md text-primary font-semibold">24g</span>
+</div>
+<div class="bg-surface-container-lowest p-2 rounded-DEFAULT flex flex-col items-center text-center shadow-xs">
+<span class="w-2 h-2 rounded-full bg-secondary mb-1"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Healthy Fat</span>
+<span class="font-label-md text-label-md text-secondary font-semibold">14g</span>
+</div>
+<div class="bg-surface-container-lowest p-2 rounded-DEFAULT flex flex-col items-center text-center shadow-xs">
+<span class="w-2 h-2 rounded-full bg-tertiary-container mb-1"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Carbs</span>
+<span class="font-label-md text-label-md text-tertiary-container font-semibold">18g</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Key Ingredients Checklist -->
+<div class="flex flex-col gap-2.5">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Key Ingredients</h3>
+<span class="font-label-sm text-label-sm text-outline">Tap to check off</span>
+</div>
+<div class="flex flex-col gap-2" id="ingredients-list">
+<label class="group flex items-center gap-3 p-2.5 bg-surface-container-low rounded-DEFAULT cursor-pointer transition-all hover:bg-surface-container">
+<input class="ingredient-cb w-5 h-5 rounded-DEFAULT text-primary focus:ring-0 accent-primary cursor-pointer" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-has-[:checked]:line-through group-has-[:checked]:text-outline">
+              150g Low-fat cottage cheese (Paneer)
+            </span>
+</label>
+<label class="group flex items-center gap-3 p-2.5 bg-surface-container-low rounded-DEFAULT cursor-pointer transition-all hover:bg-surface-container">
+<input class="ingredient-cb w-5 h-5 rounded-DEFAULT text-primary focus:ring-0 accent-primary cursor-pointer" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-has-[:checked]:line-through group-has-[:checked]:text-outline">
+              1 cup diced English cucumbers &amp; cherry tomatoes
+            </span>
+</label>
+<label class="group flex items-center gap-3 p-2.5 bg-surface-container-low rounded-DEFAULT cursor-pointer transition-all hover:bg-surface-container">
+<input class="ingredient-cb w-5 h-5 rounded-DEFAULT text-primary focus:ring-0 accent-primary cursor-pointer" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-has-[:checked]:line-through group-has-[:checked]:text-outline">
+              1 tbsp extra virgin olive oil &amp; fresh lemon juice
+            </span>
+</label>
+<label class="group flex items-center gap-3 p-2.5 bg-surface-container-low rounded-DEFAULT cursor-pointer transition-all hover:bg-surface-container">
+<input class="ingredient-cb w-5 h-5 rounded-DEFAULT text-primary focus:ring-0 accent-primary cursor-pointer" type="checkbox"/>
+<span class="font-body-md text-body-md text-on-surface group-has-[:checked]:line-through group-has-[:checked]:text-outline">
+              1 tsp roasted cumin powder &amp; fresh mint leaves
+            </span>
+</label>
+</div>
+</div>
+<!-- Step-by-Step Preparation Track -->
+<div class="flex flex-col gap-3">
+<h3 class="font-headline-sm text-headline-sm text-on-surface tracking-tight">Step-by-Step Preparation</h3>
+<div class="relative pl-7 flex flex-col gap-4">
+<!-- Timeline Track Line -->
+<div class="absolute left-3 top-3 bottom-4 w-0.5 bg-secondary-container"></div>
+<!-- Step 1 -->
+<div class="relative flex flex-col gap-1">
+<div class="absolute -left-7 top-0.5 w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm font-bold shadow-xs">
+              1
+            </div>
+<h4 class="font-label-lg text-label-lg text-on-surface font-semibold">Prep the Protein Base</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Lightly saute or cube raw cottage cheese into 1/2-inch uniform pieces for optimal dressing absorption.
+            </p>
+</div>
+<!-- Step 2 -->
+<div class="relative flex flex-col gap-1">
+<div class="absolute -left-7 top-0.5 w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm font-bold shadow-xs">
+              2
+            </div>
+<h4 class="font-label-lg text-label-lg text-on-surface font-semibold">Crisp Veggie Medley</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Toss crisp chopped cucumbers and halved cherry tomatoes together inside a pre-chilled ceramic bowl.
+            </p>
+</div>
+<!-- Step 3 -->
+<div class="relative flex flex-col gap-1">
+<div class="absolute -left-7 top-0.5 w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm font-bold shadow-xs">
+              3
+            </div>
+<h4 class="font-label-lg text-label-lg text-on-surface font-semibold">Emulsify Dressing</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Whisk freshly squeezed lemon juice, olive oil, and roasted cumin powder until smooth; drizzle gently over bowl.
+            </p>
+</div>
+<!-- Step 4 -->
+<div class="relative flex flex-col gap-1">
+<div class="absolute -left-7 top-0.5 w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm font-bold shadow-xs">
+              4
+            </div>
+<h4 class="font-label-lg text-label-lg text-on-surface font-semibold">Garnish &amp; Serve</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant leading-relaxed">
+              Garnish generously with torn garden mint leaves and freshly cracked black peppercorns. Savor immediately.
+            </p>
+</div>
+</div>
+</div>
+<!-- Action Button: Add to Today's Plan -->
+<button class="w-full py-3.5 px-6 rounded-full bg-primary hover:bg-secondary text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-sm transition-all active:scale-[0.98]" id="log-meal-btn">
+<span class="material-symbols-outlined text-[20px]">bookmark_add</span>
+<span>Log into Daily Nutrition Journal</span>
+</button>
+<!-- Feedback toast container inside card -->
+<div class="hidden p-3 rounded-DEFAULT bg-secondary-container text-on-secondary-container font-label-sm text-label-sm flex items-center justify-center gap-2" id="journal-toast">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span>Added to your NutriBloom Journal for today!</span>
+</div>
+</div>
+</section>
+<!-- Interactive Client-side Script -->
+<script>
+    (function() {
+      const searchInput = document.getElementById('recipe-search');
+      const clearSearchBtn = document.getElementById('clear-search-btn');
+      const categoryPills = document.querySelectorAll('.filter-pill');
+      const cards = document.querySelectorAll('.recipe-card');
+      const emptyState = document.getElementById('no-recipes-found');
+      const countEl = document.getElementById('recipe-count');
+      const resetBtn = document.getElementById('reset-filter-btn');
+      const logMealBtn = document.getElementById('log-meal-btn');
+      const journalToast = document.getElementById('journal-toast');
+
+      let currentCategory = 'all';
+      let searchQuery = '';
+
+      function filterRecipes() {
+        let visibleCount = 0;
+        const query = searchQuery.trim().toLowerCase();
+
+        cards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          const title = card.getAttribute('data-title').toLowerCase();
+          const ingredients = (card.getAttribute('data-ingredients') || '').toLowerCase();
+
+          const matchesCategory = (currentCategory === 'all' || category === currentCategory);
+          const matchesSearch = !query || title.includes(query) || ingredients.includes(query);
+
+          if (matchesCategory && matchesSearch) {
+            card.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        if (visibleCount === 0) {
+          emptyState.classList.remove('hidden');
+          countEl.textContent = 'No recipes found';
+        } else {
+          emptyState.classList.add('hidden');
+          countEl.textContent = `Showing ${visibleCount} curated recipe${visibleCount > 1 ? 's' : ''}`;
+        }
+      }
+
+      // Pill Click Handler
+      categoryPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          categoryPills.forEach(p => {
+            p.classList.remove('bg-primary', 'text-on-primary');
+            p.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+          });
+          pill.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
+          pill.classList.add('bg-primary', 'text-on-primary');
+
+          currentCategory = pill.getAttribute('data-category');
+          filterRecipes();
+        });
+      });
+
+      // Search Handler
+      searchInput.addEventListener('input', (e) => {
+        searchQuery = e.target.value;
+        if (searchQuery.length > 0) {
+          clearSearchBtn.classList.remove('hidden');
+        } else {
+          clearSearchBtn.classList.add('hidden');
+        }
+        filterRecipes();
+      });
+
+      // Clear search button
+      clearSearchBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        clearSearchBtn.classList.add('hidden');
+        filterRecipes();
+        searchInput.focus();
+      });
+
+      // Reset Button on empty state
+      resetBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        clearSearchBtn.classList.add('hidden');
+        currentCategory = 'all';
+        categoryPills.forEach(p => {
+          if (p.getAttribute('data-category') === 'all') {
+            p.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
+            p.classList.add('bg-primary', 'text-on-primary');
+          } else {
+            p.classList.remove('bg-primary', 'text-on-primary');
+            p.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+          }
+        });
+        filterRecipes();
+      });
+
+      // Log Meal micro-interaction
+      logMealBtn.addEventListener('click', () => {
+        logMealBtn.classList.add('opacity-80');
+        journalToast.classList.remove('hidden');
+        setTimeout(() => {
+          journalToast.classList.add('hidden');
+          logMealBtn.classList.remove('opacity-80');
+        }, 3200);
+      });
+    })();
+  </script>
+</div></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_20px_rgba(30,45,36,0.05)]" data-active-classes="text-primary font-semibold [&amp;_span.material-symbols-outlined]:font-semibold [&amp;_.active-pill]:bg-secondary-container"><div class="flex items-center justify-around h-16 px-space-xs"><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] flex-1 py-space-xs text-on-surface-variant hover:text-primary transition-all group" data-path="home" href="#"><div class="active-pill px-3 py-0.5 rounded-full transition-all"><span class="material-symbols-outlined text-[22px]">eco</span></div><span class="font-label-sm text-label-sm mt-0.5">Home</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] flex-1 py-space-xs text-on-surface-variant hover:text-primary transition-all group" data-path="nutrition-plans" href="#"><div class="active-pill px-3 py-0.5 rounded-full transition-all"><span class="material-symbols-outlined text-[22px]">assignment_turned_in</span></div><span class="font-label-sm text-label-sm mt-0.5">Plans</span></a><a aria-current="page" class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] flex-1 py-space-xs transition-all group text-primary font-semibold [&amp;_span.material-symbols-outlined]:font-semibold [&amp;_.active-pill]:bg-secondary-container" data-path="healthy-recipes" href="#"><div class="active-pill px-3 py-0.5 rounded-full transition-all"><span class="material-symbols-outlined text-[22px]">restaurant_menu</span></div><span class="font-label-sm text-label-sm mt-0.5">Recipes</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] flex-1 py-space-xs text-on-surface-variant hover:text-primary transition-all group" data-path="about-us" href="#"><div class="active-pill px-3 py-0.5 rounded-full transition-all"><span class="material-symbols-outlined text-[22px]">spa</span></div><span class="font-label-sm text-label-sm mt-0.5">About Us</span></a></div></nav></body></html>

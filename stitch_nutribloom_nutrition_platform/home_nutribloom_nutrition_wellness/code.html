@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#fbf9f5;}body{overscroll-behavior-y:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-container-low": "#f5f3ef", "background": "#fbf9f5", "on-background": "#1b1c1a", "on-tertiary": "#ffffff", "primary": "#294b37", "surface-container-high": "#eae8e4", "on-error-container": "#93000a", "outline": "#727972", "on-primary-fixed": "#002111", "on-tertiary-container": "#e7d1bf", "on-error": "#ffffff", "inverse-on-surface": "#f2f0ed", "surface-tint": "#436650", "secondary": "#41674c", "surface-container-highest": "#e4e2de", "surface": "#fbf9f5", "secondary-fixed-dim": "#a7d1b0", "on-tertiary-fixed-variant": "#534437", "secondary-container": "#c2edcb", "surface-dim": "#dbdad6", "surface-container": "#efeeea", "on-secondary-container": "#466d52", "inverse-surface": "#30312e", "on-surface-variant": "#424843", "primary-fixed": "#c4ecd0", "on-secondary-fixed-variant": "#294e36", "surface-container-lowest": "#ffffff", "error": "#ba1a1a", "on-tertiary-fixed": "#25190f", "on-secondary": "#ffffff", "outline-variant": "#c1c8c1", "inverse-primary": "#a9d0b4", "secondary-fixed": "#c2edcb", "tertiary-container": "#69594b", "on-primary-container": "#b6ddc2", "tertiary-fixed": "#f5decd", "on-primary-fixed-variant": "#2b4e39", "on-primary": "#ffffff", "error-container": "#ffdad6", "on-secondary-fixed": "#00210f", "tertiary-fixed-dim": "#d8c3b2", "on-surface": "#1b1c1a", "tertiary": "#504235", "surface-variant": "#e4e2de", "primary-container": "#40634d", "primary-fixed-dim": "#a9d0b4", "surface-bright": "#fbf9f5" }, borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, spacing: { "margin-mobile": "1.25rem", "gutter": "1.5rem", "space-md": "1rem", "space-sm": "0.5rem", "space-lg": "1.75rem", "space-xs": "0.25rem", "space-xl": "2.5rem", "margin": "3rem", "gutter-mobile": "1rem" }, fontFamily: { "body-sm": ["Inter"], "label-sm": ["Inter"], "body-lg": ["Inter"], "label-lg": ["Inter"], "headline-md": ["Inter"], "display-lg-mobile": ["Inter"], "body-md": ["Inter"], "headline-sm": ["Inter"], "headline-lg": ["Inter"], "label-md": ["Inter"], "headline-lg-mobile": ["Inter"], "display-lg": ["Inter"] }, fontSize: { "body-sm": ["13px", { "lineHeight": "20px", "fontWeight": "400" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }], "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "500" }], "display-lg-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "body-md": ["15px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "500" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }], "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "display-lg": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.02em", "fontWeight": "600" }] } } } };</script><style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head><body class="bg-surface text-on-surface flex flex-col min-h-screen selection:bg-secondary-container selection:text-on-secondary-container"><header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-margin-mobile flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="NutriBloom Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCy_5oAJNxizI6mknboH1js2y5EXgsfa1A2swQCuOeIyA4gBUBQNd2MfCaPJEeGJpGHrDIBqz1xWfO3ywxYzVqPaDGEoCJXfpwg7ycK516pnc1Ugah6D3lnqwbaFlwjA8hFxx8FSVo6r5MaPuYY1R8RXLzHGoTepEivcdmjNj4lqjqvIPOCowJFQOVHggL1n8irgl8YVEJjBE_iiZ-9ZYRjcQNPeCO6865y49G-P7Q"/><div class="flex flex-col"><span class="font-headline-sm text-headline-sm tracking-tight text-primary leading-tight">NutriBloom</span><span class="font-label-sm text-label-sm text-on-surface-variant leading-none">Home</span></div></div><div class="flex items-center gap-space-sm"><a class="w-11 h-11 rounded-full flex items-center justify-center text-primary bg-surface-container-low hover:bg-surface-container transition-colors" data-path="quick-consultation" href="#"><span class="material-symbols-outlined text-[20px]">support_agent</span></a><div class="relative flex items-center justify-center w-11 h-11"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBT4RS1mTuRrwuinfptanyYURw65KDVtsxT2HfMoT_JLkgS_nhSyMFsOW13hGl4QRGXpaLggX477Go2SukuJ_XMgYxUIJnhzS7lEy4U6MKCB7f_SywwPXp-DlnHSMsMVHxnrgiDbd3b_ktkl0VJ7wZ5Kieod39tTsziltdFTx0R-A8a3Z5B1savXFl4DZuNzy08DxzspFs3UA8lJy9V85EXHrATYEGh6KxpLuF6X8Y"/><span class="absolute top-1.5 right-1.5 flex h-2.5 w-2.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span><span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-secondary"></span></span></div></div></div></header><main class="flex flex-col relative w-full pt-16 pb-24 bg-surface min-h-screen"><div class="flex flex-col w-full">
+<!-- Interactive Toast Notification Component -->
+<div class="fixed top-20 left-4 right-4 z-40 transition-all duration-500 transform -translate-y-28 opacity-0 pointer-events-none flex items-center justify-between p-space-sm bg-primary text-on-primary rounded-full shadow-lg" id="toast-banner">
+<div class="flex items-center gap-space-xs pl-space-xs">
+<span class="material-symbols-outlined text-[18px] text-primary-fixed">check_circle</span>
+<span class="font-label-sm text-label-sm" id="toast-msg">Saved to favorites!</span>
+</div>
+<button class="w-7 h-7 rounded-full flex items-center justify-center bg-primary-container text-on-primary-container" onclick="hideToast()">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<!-- Hero Section -->
+<section class="relative px-margin-mobile pt-space-lg pb-space-xl overflow-hidden">
+<!-- Subtle Botanical Ambient Background Element -->
+<div class="absolute -top-12 -right-16 w-56 h-56 rounded-full bg-secondary-container/30 blur-3xl pointer-events-none"></div>
+<div class="absolute top-1/2 -left-20 w-48 h-48 rounded-full bg-surface-container-high/60 blur-2xl pointer-events-none"></div>
+<div class="relative flex flex-col items-start gap-space-md">
+<!-- Clinical Badge -->
+<div class="inline-flex items-center gap-space-xs px-space-md py-1.5 rounded-full bg-surface-container text-primary shadow-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified</span>
+<span class="font-label-sm text-label-sm tracking-wide">Certified Clinical Dietetics</span>
+</div>
+<!-- Main Heading -->
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-semibold tracking-tight">
+        Nourish Your Body. <br/>
+<span class="text-primary italic font-serif">Transform Your Life.</span>
+</h1>
+<!-- Subheading -->
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm">
+        Personalized, evidence-based nutrition plans and wholesome dietitian-crafted meals to heal your gut, optimize energy, and sustain long-term vitality.
+      </p>
+<!-- CTA Buttons -->
+<div class="flex flex-col sm:flex-row w-full gap-space-sm pt-space-xs">
+<a class="w-full flex items-center justify-center gap-space-xs px-space-lg py-3.5 rounded-full bg-primary text-on-primary font-label-lg text-label-lg shadow-md hover:bg-primary-container transition-all active:scale-[0.98]" data-path="nutrition-plans" href="#">
+<span>Explore Nutrition Plans</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<a class="w-full flex items-center justify-center gap-space-xs px-space-lg py-3.5 rounded-full bg-surface-container text-primary font-label-lg text-label-lg shadow-sm hover:bg-surface-container-high transition-all active:scale-[0.98]" data-path="healthy-recipes" href="#">
+<span class="material-symbols-outlined text-[18px]">restaurant_menu</span>
+<span>Discover Recipes</span>
+</a>
+</div>
+<!-- Quick Trust Indicators Bar -->
+<div class="w-full mt-space-md p-space-md rounded-2xl bg-surface-container-lowest shadow-sm flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1">
+<span class="font-label-md text-label-md text-on-surface font-semibold">4.9/5 Rating</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">1,200+ clients healed</span>
+</div>
+</div>
+<div class="h-8 w-px bg-surface-container-highest"></div>
+<div class="flex items-center gap-space-xs">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">chips</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">100% Science</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Peer-reviewed protocol</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Nutrition Services -->
+<section class="px-margin-mobile py-space-lg flex flex-col gap-space-md">
+<div class="flex items-end justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Targeted Care</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Clinical Services</h2>
+</div>
+<a class="font-label-md text-label-md text-primary flex items-center gap-0.5 hover:underline" data-path="nutrition-plans" href="#">
+        All Services <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+<!-- Service Cards Bento Stack -->
+<div class="flex flex-col gap-space-md">
+<!-- Card 1 -->
+<div class="relative p-space-lg rounded-3xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-2xl bg-secondary-container text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">vital_signs</span>
+</div>
+<span class="px-space-sm py-1 rounded-full bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm">Therapeutic</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-medium">Clinical Diet Consulting</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+            Holistic protocols for gut microbiome restoration, hormonal alignment, and long-term metabolic health supervision.
+          </p>
+</div>
+<div class="pt-space-xs flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary font-medium">Lab Reviews Included</span>
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary font-semibold group-hover:translate-x-1 transition-transform" data-path="nutrition-plans" href="#">
+            Learn More <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="relative p-space-lg rounded-3xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-2xl bg-surface-container text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">set_meal</span>
+</div>
+<span class="px-space-sm py-1 rounded-full bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm">Personalized</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-medium">Custom Meal Architect</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+            Macro-calculated weekly menus adapted specifically to your palate, food sensitivities, and circadian schedule.
+          </p>
+</div>
+<div class="pt-space-xs flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary font-medium">7-Day Dynamic Roster</span>
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary font-semibold group-hover:translate-x-1 transition-transform" data-path="nutrition-plans" href="#">
+            Learn More <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="relative p-space-lg rounded-3xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm group hover:shadow-md transition-shadow">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-2xl bg-secondary-fixed text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">strikethrough_s</span>
+</div>
+<span class="px-space-sm py-1 rounded-full bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm">Diagnostics</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-medium">Bio-Individual Health Audits</h3>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">
+            Comprehensive blood panel evaluations, continuous glucose monitoring analysis, and personalized nutrient density scores.
+          </p>
+</div>
+<div class="pt-space-xs flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-secondary font-medium">Full Biomarker Map</span>
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-primary font-semibold group-hover:translate-x-1 transition-transform" data-path="nutrition-plans" href="#">
+            Learn More <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Daily Balance Calculator Micro-Widget -->
+<section class="px-margin-mobile py-space-md">
+<div class="p-space-lg rounded-3xl bg-secondary-container/50 flex flex-col gap-space-md relative overflow-hidden">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">tune</span>
+<span class="font-label-md text-label-md text-primary font-semibold">Your Balance Baseline</span>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-surface font-medium">Adjust your daily activity goal</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">See immediate projected cellular renewal support.</p>
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center text-on-surface font-label-md text-label-md">
+<span>Target Lifestyle Cadence</span>
+<span class="font-semibold text-primary" id="cadence-label">Balanced Restoration</span>
+</div>
+<input class="w-full accent-primary h-2 bg-surface-container-highest rounded-full cursor-pointer appearance-none" id="cadence-slider" max="3" min="1" oninput="updateCadence(this.value)" type="range" value="2"/>
+</div>
+<div class="grid grid-cols-2 gap-space-sm pt-space-xs">
+<div class="p-space-sm rounded-2xl bg-surface-container-lowest/90 flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Recommended Fiber</span>
+<span class="font-headline-sm text-headline-sm text-primary font-semibold" id="fiber-metric">32g / day</span>
+</div>
+<div class="p-space-sm rounded-2xl bg-surface-container-lowest/90 flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Anti-Inflammatory Index</span>
+<span class="font-headline-sm text-headline-sm text-secondary font-semibold" id="anti-metric">+94% Bioactive</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Benefits of Balanced Nutrition -->
+<section class="px-margin-mobile py-space-lg flex flex-col gap-space-md">
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Biological Synergy</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Holistic Health Dividends</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Sustainable physiology designed to liberate you from restrictive diets.</p>
+</div>
+<!-- 4 Clean Stat / Benefit Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+<!-- Benefit 1 -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-surface-container text-primary flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+</div>
+<div class="flex flex-col">
+<h4 class="font-label-lg text-label-lg text-on-surface font-semibold">Sustained Energy</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Smooth, crash-free daytime vitality without coffee dependencies.</p>
+</div>
+</div>
+<!-- Benefit 2 -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-secondary-container text-primary flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">microbiology</span>
+</div>
+<div class="flex flex-col">
+<h4 class="font-label-lg text-label-lg text-on-surface font-semibold">Restored Microbiome</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Optimal nutrient assimilation and gut epithelial repair.</p>
+</div>
+</div>
+<!-- Benefit 3 -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-surface-container text-secondary flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">balance</span>
+</div>
+<div class="flex flex-col">
+<h4 class="font-label-lg text-label-lg text-on-surface font-semibold">Endocrine Equilibrium</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Gentle insulin sensitivity and thyroid receptor re-sensitization.</p>
+</div>
+</div>
+<!-- Benefit 4 -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest shadow-sm flex items-start gap-space-sm">
+<div class="w-10 h-10 rounded-xl bg-secondary-container text-secondary flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">favorite</span>
+</div>
+<div class="flex flex-col">
+<h4 class="font-label-lg text-label-lg text-on-surface font-semibold">Mindful Relationship</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Cultivate calm intuitive eating devoid of guilt or restriction.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Healthy Meal Cards -->
+<section class="px-margin-mobile py-space-lg flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Nourishing Kitchen</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Dietitian-Crafted Meals</h2>
+</div>
+<a class="font-label-md text-label-md text-primary font-medium hover:underline inline-flex items-center" data-path="healthy-recipes" href="#">
+        View All <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</a>
+</div>
+<!-- Meal Cards Stack -->
+<div class="flex flex-col gap-space-md">
+<!-- Meal 1 -->
+<div class="p-space-md rounded-3xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm">
+<div class="relative w-full h-44 rounded-2xl overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A lush overhead view of an organic green goddess salad bowl with sliced ripe avocado, fluffy warm quinoa, steamed edamame, and vibrant herb green dressing in a soft ceramic matte bowl bathed in bright soft morning daylight with clean linen aesthetic and sage green accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjOzsqdyO5V8l2V2VPG6f7yzVsY16wcDoHcEJqS3ypKFtI68NbaSuSfELDvLmjCnZXv2vlKS4QZFgaeLKRHA6Cvzu9E43ITNKgN6OUuqT8ZVt-Eg9H1WwhsktPHJd_uTNOFw4mlW4P6FYG0vqQ8tLUrBtDVCI3neCiPXx7z_HXWIE0zr50Q0CVYA7CyVI3bb_NBVvKrMUlSGwcxOhf8T_aNF5xcUCyrXPnWeF7qbQ"/>
+<div class="absolute top-3 left-3 px-space-sm py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-primary font-label-sm text-label-sm font-semibold shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">eco</span> High Fiber
+          </div>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-container-lowest/90 backdrop-blur-md flex items-center justify-center text-on-surface-variant hover:text-error transition-colors shadow-sm active:scale-90" onclick="triggerFavorite(this, 'Avocado Quinoa Bowl')">
+<span class="material-symbols-outlined text-[18px]">favorite_border</span>
+</button>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-medium">Avocado Quinoa Green Goddess Bowl</h3>
+</div>
+<div class="flex items-center gap-space-sm font-body-sm text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-[16px] text-secondary">local_fire_department</span> 380 kcal</span>
+<span>•</span>
+<span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-[16px]">timer</span> 15 mins</span>
+<span>•</span>
+<span class="text-secondary font-medium">Prebiotic Rich</span>
+</div>
+</div>
+<div class="pt-space-xs flex items-center justify-between">
+<div class="flex gap-1.5">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-primary font-label-sm text-label-sm">Vegan</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-primary font-label-sm text-label-sm">Gluten-Free</span>
+</div>
+<a class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-0.5" data-path="healthy-recipes" href="#">
+            View Recipe <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Meal 2 -->
+<div class="p-space-md rounded-3xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm">
+<div class="relative w-full h-44 rounded-2xl overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="A clean artisanal glass jar filled with layered berry chia overnight protein oats, fresh blackberries, chia seeds, and creamy almond milk with botanical herbs softly blurred in the background on a natural wooden table in soft ambient afternoon light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAie4nzsK31K2guha0yYQ2Ja3FtmvQKYyUzTkvdalwI9bRyBUg98oDYkrrMsvZpIHQvH6uFiSAH7JDa9WyWBXIQtaCTxFOwsbZAw7ZqPO6650m6y3Wj-dGbbA2Aplp-KgL4BcwJ9nbhHWJwdxWPdC6TFvJMGazkwjLd5JyZANxWrmUL_Z_ebCKWJ_BXdTJRc9XfOkW7R7JW8om-Bp4fFZikpjfKKFkfkLixqCOiZpU"/>
+<div class="absolute top-3 left-3 px-space-sm py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-primary font-label-sm text-label-sm font-semibold shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">fitness_center</span> 22g Protein
+          </div>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-container-lowest/90 backdrop-blur-md flex items-center justify-center text-on-surface-variant hover:text-error transition-colors shadow-sm active:scale-90" onclick="triggerFavorite(this, 'Berry Chia Oats')">
+<span class="material-symbols-outlined text-[18px]">favorite_border</span>
+</button>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-medium">Berry Chia Overnight Protein Oats</h3>
+</div>
+<div class="flex items-center gap-space-sm font-body-sm text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-[16px] text-secondary">local_fire_department</span> 320 kcal</span>
+<span>•</span>
+<span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-[16px]">schedule</span> Prep ahead</span>
+<span>•</span>
+<span class="text-secondary font-medium">Omega-3 Boost</span>
+</div>
+</div>
+<div class="pt-space-xs flex items-center justify-between">
+<div class="flex gap-1.5">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-primary font-label-sm text-label-sm">High Protein</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-primary font-label-sm text-label-sm">Nutrient Dense</span>
+</div>
+<a class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-0.5" data-path="healthy-recipes" href="#">
+            View Recipe <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Meal 3 -->
+<div class="p-space-md rounded-3xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-sm">
+<div class="relative w-full h-44 rounded-2xl overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover" data-alt="Golden seared crispy tofu cubes tossed with crunchy edamame, sliced purple cabbage, roasted sesame seeds, and ginger tamari dressing in an elegant minimalist ceramic bowl on a muted sage and cream tabletop." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBz-k6G4rTsXbt8XBG4HmD71bTZtX6fotDlaRun88y79Dq7OtNZfkj7AHH9L1_SVtY3RbSE9jVG9fsizXWNJxBLnq0hZxnLyY67eKPQYFZH2c9Hii2yvvsBIlHBbeY25wvvPK0yVzgtYkC7F8C9t3vQqxq9LOAdT8iRgzJzr2Q3KLgXrohnpXbcbssYo_qp98TY2bkYb8VAAw3h-PyyjCIxEf-7FmOdVr6m4Cyo-TA"/>
+<div class="absolute top-3 left-3 px-space-sm py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md text-primary font-label-sm text-label-sm font-semibold shadow-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">psychiatry</span> Plant Power
+          </div>
+<button class="absolute top-3 right-3 w-8 h-8 rounded-full bg-surface-container-lowest/90 backdrop-blur-md flex items-center justify-center text-on-surface-variant hover:text-error transition-colors shadow-sm active:scale-90" onclick="triggerFavorite(this, 'Tofu Sesame Salad')">
+<span class="material-symbols-outlined text-[18px]">favorite_border</span>
+</button>
+</div>
+<div class="flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-medium">Tofu &amp; Edamame Sesame Crunch Salad</h3>
+</div>
+<div class="flex items-center gap-space-sm font-body-sm text-body-sm text-on-surface-variant">
+<span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-[16px] text-secondary">local_fire_department</span> 410 kcal</span>
+<span>•</span>
+<span class="flex items-center gap-0.5"><span class="material-symbols-outlined text-[16px]">timer</span> 20 mins</span>
+<span>•</span>
+<span class="text-secondary font-medium">Phyto-Nutrients</span>
+</div>
+</div>
+<div class="pt-space-xs flex items-center justify-between">
+<div class="flex gap-1.5">
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-primary font-label-sm text-label-sm">Antioxidant</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-primary font-label-sm text-label-sm">Low GI</span>
+</div>
+<a class="font-label-sm text-label-sm text-primary font-semibold flex items-center gap-0.5" data-path="healthy-recipes" href="#">
+            View Recipe <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- View All Recipes Text Link -->
+<a class="w-full py-3 rounded-2xl bg-surface-container text-primary font-label-lg text-label-lg font-semibold flex items-center justify-center gap-space-xs hover:bg-surface-container-high transition-colors" data-path="healthy-recipes" href="#">
+<span>View All Recipes</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+</section>
+<!-- Client Testimonials Carousel Section -->
+<section class="px-margin-mobile py-space-lg flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-widest">Patient Journey</span>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Transformative Outcomes</h2>
+</div>
+<div class="flex items-center gap-1.5">
+<button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary active:scale-95 transition-all" onclick="prevTestimonial()">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary active:scale-95 transition-all" onclick="nextTestimonial()">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Active Carousel Card Container -->
+<div class="relative p-space-lg rounded-3xl bg-surface-container-lowest shadow-sm flex flex-col gap-space-md transition-all duration-300" id="testimonial-container">
+<!-- Rating Stars -->
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-0.5 text-secondary">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-container text-primary font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[14px]">verified</span> Verified Patient
+        </div>
+</div>
+<!-- Quote -->
+<p class="font-body-lg text-body-lg text-on-surface italic leading-relaxed" id="testimonial-quote">
+        “NutriBloom transformed how I view food. Lost 14kg in 4 months while completely reversing my pre-diabetes markers without feeling deprived once.”
+      </p>
+<!-- Client Bio & Attending Dietitian -->
+<div class="pt-space-xs flex items-center justify-between border-t-0 bg-surface-container-low p-space-sm rounded-2xl">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-full bg-secondary-container text-primary font-semibold flex items-center justify-center text-[14px]" id="testimonial-avatar">
+            SK
+          </div>
+<div class="flex flex-col">
+<span class="font-label-lg text-label-lg text-on-surface font-semibold" id="testimonial-author">Sarah K.</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant" id="testimonial-detail">Metabolic Renewal Plan</span>
+</div>
+</div>
+<div class="flex flex-col text-right">
+<span class="font-label-sm text-label-sm text-secondary font-medium">Dietitian</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Dr. Lauren Reed, RD</span>
+</div>
+</div>
+</div>
+<!-- Carousel Indicator Dots -->
+<div class="flex justify-center items-center gap-2 pt-space-xs">
+<div class="w-6 h-1.5 rounded-full bg-primary transition-all" id="dot-0"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-surface-container-highest transition-all" id="dot-1"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-surface-container-highest transition-all" id="dot-2"></div>
+</div>
+</section>
+<!-- Clean Footer Section -->
+<footer class="mt-space-lg px-margin-mobile pt-space-xl pb-space-lg bg-surface-container-low rounded-t-3xl flex flex-col gap-space-lg">
+<!-- Brand Summary & Mission -->
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[24px]">eco</span>
+<span class="font-headline-sm text-headline-sm text-primary font-semibold">NutriBloom</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs">
+        Clinical precision meets organic wellness. Helping you build enduring metabolic vitality through bespoke nutritional biology.
+      </p>
+</div>
+<!-- Quick Navigation Links -->
+<div class="flex flex-col gap-space-xs">
+<span class="font-label-md text-label-md text-primary font-semibold uppercase tracking-wider">Quick Navigation</span>
+<div class="grid grid-cols-2 gap-space-xs font-label-md text-label-md text-on-surface-variant">
+<a class="py-1 hover:text-primary transition-colors flex items-center gap-1" data-path="home" href="#">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span> Home
+        </a>
+<a class="py-1 hover:text-primary transition-colors flex items-center gap-1" data-path="nutrition-plans" href="#">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span> Plans
+        </a>
+<a class="py-1 hover:text-primary transition-colors flex items-center gap-1" data-path="healthy-recipes" href="#">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span> Recipes
+        </a>
+<a class="py-1 hover:text-primary transition-colors flex items-center gap-1" data-path="about-us" href="#">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span> About Us
+        </a>
+</div>
+</div>
+<!-- Contact & Operating Information -->
+<div class="p-space-md rounded-2xl bg-surface-container-lowest flex flex-col gap-space-sm shadow-sm">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Direct Clinical Desk</span>
+<div class="flex flex-col gap-1.5 font-body-sm text-body-sm text-on-surface-variant">
+<a class="flex items-center gap-space-xs hover:text-primary transition-colors" href="mailto:contact@nutribloom.health">
+<span class="material-symbols-outlined text-[18px] text-secondary">mail</span>
+          contact@nutribloom.health
+        </a>
+<a class="flex items-center gap-space-xs hover:text-primary transition-colors" href="tel:+15553827491">
+<span class="material-symbols-outlined text-[18px] text-secondary">call</span>
+          +1 (555) 382-7491
+        </a>
+<div class="flex items-center gap-space-xs text-on-surface-variant pt-1">
+<span class="material-symbols-outlined text-[18px] text-secondary">schedule</span>
+          Mon–Fri: 8:00 AM – 6:00 PM EST
+        </div>
+</div>
+</div>
+<!-- Regulatory & Copyright Note -->
+<div class="pt-space-sm flex flex-col gap-space-xs text-center items-center">
+<div class="flex items-center gap-space-sm text-on-surface-variant font-label-sm text-label-sm">
+<a class="hover:underline" href="#">Privacy Policy</a>
+<span>•</span>
+<a class="hover:underline" href="#">Terms of Service</a>
+<span>•</span>
+<a class="hover:underline" href="#">Clinical Disclaimer</a>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">
+        © 2025 NutriBloom Inc. All rights reserved.
+      </p>
+</div>
+</footer>
+</div>
+<script>
+  // Testimonial Carousel State
+  const testimonials = [
+    {
+      quote: "“NutriBloom transformed how I view food. Lost 14kg in 4 months while completely reversing my pre-diabetes markers without feeling deprived once.”",
+      author: "Sarah K.",
+      detail: "Metabolic Renewal Plan",
+      avatar: "SK",
+      dietitian: "Dr. Lauren Reed, RD"
+    },
+    {
+      quote: "“The customized anti-inflammatory menu finally cleared my chronic IBS symptoms. My daily energy levels haven't felt this consistent in 8 years.”",
+      author: "David M.",
+      detail: "Gut Restoration Track",
+      avatar: "DM",
+      dietitian: "Dr. Marcus Vance, MS"
+    },
+    {
+      quote: "“Navigating postpartum nutrition was overwhelming until NutriBloom structured every micronutrient target. Truly life-changing compassionate care.”",
+      author: "Elena R.",
+      detail: "Hormonal Balance Program",
+      avatar: "ER",
+      dietitian: "Claire Bennett, RD"
+    }
+  ];
+
+  let currentTestimonialIdx = 0;
+
+  function renderTestimonial(idx) {
+    const item = testimonials[idx];
+    const quoteEl = document.getElementById('testimonial-quote');
+    const authorEl = document.getElementById('testimonial-author');
+    const detailEl = document.getElementById('testimonial-detail');
+    const avatarEl = document.getElementById('testimonial-avatar');
+
+    if (quoteEl && authorEl && detailEl && avatarEl) {
+      quoteEl.innerHTML = item.quote;
+      authorEl.textContent = item.author;
+      detailEl.textContent = item.detail;
+      avatarEl.textContent = item.avatar;
+    }
+
+    // Update dots
+    for (let i = 0; i < 3; i++) {
+      const dot = document.getElementById('dot-' + i);
+      if (dot) {
+        if (i === idx) {
+          dot.className = "w-6 h-1.5 rounded-full bg-primary transition-all";
+        } else {
+          dot.className = "w-1.5 h-1.5 rounded-full bg-surface-container-highest transition-all";
+        }
+      }
+    }
+  }
+
+  function nextTestimonial() {
+    currentTestimonialIdx = (currentTestimonialIdx + 1) % testimonials.length;
+    renderTestimonial(currentTestimonialIdx);
+  }
+
+  function prevTestimonial() {
+    currentTestimonialIdx = (currentTestimonialIdx - 1 + testimonials.length) % testimonials.length;
+    renderTestimonial(currentTestimonialIdx);
+  }
+
+  // Interactive Cadence Slider Logic
+  function updateCadence(val) {
+    const label = document.getElementById('cadence-label');
+    const fiber = document.getElementById('fiber-metric');
+    const anti = document.getElementById('anti-metric');
+
+    if (val == 1) {
+      label.textContent = "Gentle Reset";
+      fiber.textContent = "26g / day";
+      anti.textContent = "+78% Bioactive";
+    } else if (val == 2) {
+      label.textContent = "Balanced Restoration";
+      fiber.textContent = "32g / day";
+      anti.textContent = "+94% Bioactive";
+    } else {
+      label.textContent = "Athletic Vitality";
+      fiber.textContent = "38g / day";
+      anti.textContent = "+98% Bioactive";
+    }
+  }
+
+  // Interactive Toast Favorite Micro-Interaction
+  let toastTimer;
+  function triggerFavorite(btn, mealName) {
+    const icon = btn.querySelector('.material-symbols-outlined');
+    const isFav = icon.textContent === 'favorite';
+
+    if (isFav) {
+      icon.textContent = 'favorite_border';
+      icon.style.fontVariationSettings = "'FILL' 0";
+      btn.classList.remove('text-error');
+      showToast('Removed ' + mealName + ' from favorites');
+    } else {
+      icon.textContent = 'favorite';
+      icon.style.fontVariationSettings = "'FILL' 1";
+      btn.classList.add('text-error');
+      showToast('Saved ' + mealName + ' to your meal library!');
+    }
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById('toast-banner');
+    const msgEl = document.getElementById('toast-msg');
+    if (!toast || !msgEl) return;
+
+    msgEl.textContent = msg;
+    toast.classList.remove('-translate-y-28', 'opacity-0', 'pointer-events-none');
+    toast.classList.add('translate-y-0', 'opacity-100');
+
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => {
+      hideToast();
+    }, 2800);
+  }
+
+  function hideToast() {
+    const toast = document.getElementById('toast-banner');
+    if (toast) {
+      toast.classList.add('-translate-y-28', 'opacity-0', 'pointer-events-none');
+      toast.classList.remove('translate-y-0', 'opacity-100');
+    }
+  }
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-4px_20px_rgba(30,45,36,0.05)]" data-active-classes="text-primary font-semibold [&amp;_span.material-symbols-outlined]:font-semibold [&amp;_.active-pill]:bg-secondary-container"><div class="flex items-center justify-around h-16 px-space-xs"><a aria-current="page" class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] flex-1 py-space-xs transition-all group text-primary font-semibold [&amp;_span.material-symbols-outlined]:font-semibold [&amp;_.active-pill]:bg-secondary-container" data-path="home" href="#"><div class="active-pill px-3 py-0.5 rounded-full transition-all"><span class="material-symbols-outlined text-[22px]">eco</span></div><span class="font-label-sm text-label-sm mt-0.5">Home</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] flex-1 py-space-xs text-on-surface-variant hover:text-primary transition-all group" data-path="nutrition-plans" href="#"><div class="active-pill px-3 py-0.5 rounded-full transition-all"><span class="material-symbols-outlined text-[22px]">assignment_turned_in</span></div><span class="font-label-sm text-label-sm mt-0.5">Plans</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] flex-1 py-space-xs text-on-surface-variant hover:text-primary transition-all group" data-path="healthy-recipes" href="#"><div class="active-pill px-3 py-0.5 rounded-full transition-all"><span class="material-symbols-outlined text-[22px]">restaurant_menu</span></div><span class="font-label-sm text-label-sm mt-0.5">Recipes</span></a><a class="flex flex-col items-center justify-center min-w-[44px] min-h-[44px] flex-1 py-space-xs text-on-surface-variant hover:text-primary transition-all group" data-path="about-us" href="#"><div class="active-pill px-3 py-0.5 rounded-full transition-all"><span class="material-symbols-outlined text-[22px]">spa</span></div><span class="font-label-sm text-label-sm mt-0.5">About Us</span></a></div></nav></body></html>

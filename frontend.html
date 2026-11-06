@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#fbf9f5" />
+  <title>NutriBloom — Clinical Wellness & Nutrition Platform (Frontend)</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23294b37'><path d='M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66l.95-2.3c.48.17.98.3 1.34.3C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z'/></svg>" />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,400;1,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-container-low": "#f5f3ef",
+            "background": "#fbf9f5",
+            "on-background": "#1b1c1a",
+            "on-tertiary": "#ffffff",
+            "primary": "#294b37",
+            "surface-container-high": "#eae8e4",
+            "on-error-container": "#93000a",
+            "outline": "#727972",
+            "on-primary-fixed": "#002111",
+            "on-tertiary-container": "#e7d1bf",
+            "on-error": "#ffffff",
+            "inverse-on-surface": "#f2f0ed",
+            "surface-tint": "#436650",
+            "secondary": "#41674c",
+            "surface-container-highest": "#e4e2de",
+            "surface": "#fbf9f5",
+            "secondary-fixed-dim": "#a7d1b0",
+            "on-tertiary-fixed-variant": "#534437",
+            "secondary-container": "#c2edcb",
+            "surface-dim": "#dbdad6",
+            "surface-container": "#efeeea",
+            "on-secondary-container": "#466d52",
+            "inverse-surface": "#30312e",
+            "on-surface-variant": "#424843",
+            "primary-fixed": "#c4ecd0",
+            "on-secondary-fixed-variant": "#294e36",
+            "surface-container-lowest": "#ffffff",
+            "error": "#ba1a1a",
+            "on-tertiary-fixed": "#25190f",
+            "on-secondary": "#ffffff",
+            "outline-variant": "#c1c8c1",
+            "inverse-primary": "#a9d0b4",
+            "secondary-fixed": "#c2edcb",
+            "tertiary-container": "#69594b",
+            "on-primary-container": "#b6ddc2",
+            "tertiary-fixed": "#f5decd",
+            "on-primary-fixed-variant": "#2b4e39",
+            "on-primary": "#ffffff",
+            "error-container": "#ffdad6",
+            "on-secondary-fixed": "#00210f",
+            "tertiary-fixed-dim": "#d8c3b2",
+            "on-surface": "#1b1c1a",
+            "tertiary": "#504235",
+            "surface-variant": "#e4e2de",
+            "primary-container": "#40634d",
+            "primary-fixed-dim": "#a9d0b4",
+            "surface-bright": "#fbf9f5"
+          },
+          borderRadius: {
+            "sm": "0.5rem",
+            "DEFAULT": "1rem",
+            "md": "1.5rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          spacing: {
+            "margin-mobile": "1.25rem",
+            "gutter": "1.5rem",
+            "space-md": "1rem",
+            "space-sm": "0.5rem",
+            "space-lg": "1.75rem",
+            "space-xs": "0.25rem",
+            "space-xl": "2.5rem",
+            "margin": "3rem",
+            "gutter-mobile": "1rem"
+          },
+          fontFamily: {
+            "sans": ["Inter", "system-ui", "sans-serif"],
+            "serif": ["Playfair Display", "Georgia", "serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- React 18, ReactDOM, Babel Standalone & Canvas Confetti -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    html, body {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: #fbf9f5;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    body {
+      overscroll-behavior-y: none;
+    }
+    .pb-safe {
+      padding-bottom: max(env(safe-area-inset-bottom, 0px), 1rem);
+    }
+    .pt-safe {
+      padding-top: max(env(safe-area-inset-top, 0px), 0px);
+    }
+    ::-webkit-scrollbar { display: none; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .shadow-botanical {
+      box-shadow: 0 4px 24px -2px rgba(30, 45, 36, 0.06), 0 2px 8px -1px rgba(30, 45, 36, 0.04);
+    }
+    .shadow-botanical-lg {
+      box-shadow: 0 12px 32px -4px rgba(30, 45, 36, 0.08), 0 4px 12px -2px rgba(30, 45, 36, 0.05);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-secondary-container selection:text-on-secondary-container min-h-screen">
+  <div id="root"></div>
+
+  <!-- Standalone React Application Code -->
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    const BRAND_CONFIG = {
+      name: "NutriBloom",
+      tagline: "Clinical Authority & Mindful Wellness",
+      logoUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuCy_5oAJNxizI6mknboH1js2y5EXgsfa1A2swQCuOeIyA4gBUBQNd2MfCaPJEeGJpGHrDIBqz1xWfO3ywxYzVqPaDGEoCJXfpwg7ycK516pnc1Ugah6D3lnqwbaFlwjA8hFxx8FSVo6r5MaPuYY1R8RXLzHGoTepEivcdmjNj4lqjqvIPOCowJFQOVHggL1n8irgl8YVEJjBE_iiZ-9ZYRjcQNPeCO6865y49G-P7Q",
+      leadDietitianAvatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuBT4RS1mTuRrwuinfptanyYURw65KDVtsxT2HfMoT_JLkgS_nhSyMFsOW13hGl4QRGXpaLggX477Go2SukuJ_XMgYxUIJnhzS7lEy4U6MKCB7f_SywwPXp-DlnHSMsMVHxnrgiDbd3b_ktkl0VJ7wZ5Kieod39tTsziltdFTx0R-A8a3Z5B1savXFl4DZuNzy08DxzspFs3UA8lJy9V85EXHrATYEGh6KxpLuF6X8Y",
+      contact: {
+        email: "contact@nutribloom.health",
+        phone: "+1 (555) 382-7491",
+        clinicPhone: "(555) 482-9012",
+        address: "742 Evergreen Wellness Ave, Suite 300",
+        hours: "Mon–Fri: 8:00 AM – 6:00 PM EST"
+      }
+    };
+
+    const CLINICAL_SERVICES = [
+      {
+        id: "consulting",
+        title: "Clinical Diet Consulting",
+        tag: "Therapeutic",
+        description: "Holistic protocols for gut microbiome restoration, hormonal alignment, and long-term metabolic health supervision.",
+        highlight: "Lab Reviews Included",
+        icon: "vital_signs",
+        iconBg: "bg-secondary-container",
+        iconColor: "text-primary"
+      },
+      {
+        id: "architect",
+        title: "Custom Meal Architect",
+        tag: "Personalized",
+        description: "Macro-calculated weekly menus adapted specifically to your palate, food sensitivities, and circadian schedule.",
+        highlight: "7-Day Dynamic Roster",
+        icon: "set_meal",
+        iconBg: "bg-surface-container",
+        iconColor: "text-primary"
+      },
+      {
+        id: "audits",
+        title: "Bio-Individual Health Audits",
+        tag: "Diagnostics",
+        description: "Comprehensive blood panel evaluations, continuous glucose monitoring analysis, and personalized nutrient density scores.",
+        highlight: "Full Biomarker Map",
+        icon: "strikethrough_s",
+        iconBg: "bg-secondary-fixed",
+        iconColor: "text-primary"
+      }
+    ];
+
+    const HOLISTIC_BENEFITS = [
+      {
+        title: "Sustained Energy",
+        description: "Smooth, crash-free daytime vitality without coffee dependencies.",
+        icon: "bolt",
+        bg: "bg-surface-container"
+      },
+      {
+        title: "Restored Microbiome",
+        description: "Optimal nutrient assimilation and gut epithelial repair.",
+        icon: "microbiology",
+        bg: "bg-secondary-container"
+      },
+      {
+        title: "Endocrine Equilibrium",
+        description: "Gentle insulin sensitivity and thyroid receptor re-sensitization.",
+        icon: "balance",
+        bg: "bg-surface-container"
+      },
+      {
+        title: "Mindful Relationship",
+        description: "Cultivate calm intuitive eating devoid of guilt or restriction.",
+        icon: "favorite",
+        bg: "bg-secondary-container"
+      }
+    ];
+
+    const NUTRITION_PLANS = [
+      {
+        id: "weight-management",
+        title: "Weight Management Plan",
+        price: 189,
+        period: "/mo",
+        category: "lifestyle",
+        badge: "Most Popular",
+        badgeIcon: "star",
+        badgeVariant: "primary",
+        duration: "12 Weeks • Bi-weekly Reviews",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAuEFVutxabf9p-QxmpYiOlhCgbjvuDCsvkahoSCWUB9m6J6fKEPQNz-191UkeoT4k2NzBoYp0oXxYUBYb03YeA_YkTJiyEJcF8Ra7Uba_sjaZKYHpM1PjuIrrCa4t8bXuNneZ7KtGjVE4BfS94QLaUkgN4iYzz4nJTEdgT_yPubGWZGi1N9AvhuKmHuvWnQQu3Ngftqb1k6GSixjXZrGpTULY34mYsUVyMMzE1Sm4",
+        imageAlt: "Clean wholesome organic diet ingredients, avocado, wild salmon, greens",
+        description: "Sustainable, non-restrictive metabolic acceleration designed for safe fat loss and muscle preservation.",
+        highlights: [
+          "Caloric Deficit Tuning",
+          "Metabolic Tracking",
+          "Portion Guides",
+          "Bi-Weekly 1:1 Call"
+        ]
+      },
+      {
+        id: "balanced-diet",
+        title: "Balanced Diet Plan",
+        price: 139,
+        period: "/mo",
+        category: "lifestyle",
+        badge: "Foundational",
+        badgeIcon: "spa",
+        badgeVariant: "secondary",
+        duration: "Ongoing • Habit Reset",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBCvBqm2tUbpHIkR3UoQFJqYOeYDrtsWfdIe-TUAvwOCUqF6ooZn4xjCkOpXedTSFpBDRLstexORejxxZdIboVMLNxin9lyLer6wM4FBBlAQ9S70iCXCssZ02oYbfYb49PHMpWtINNPq1tUIbSmmBJaWYHlLcb3W2i3wzueFsRBw9BOoNa_h-Vj6jlJgkR-tCllhidOTionZ5oqHo7PTeJbVZunlsT1NhKRfQ2KM3M",
+        imageAlt: "Vibrant Mediterranean style balanced healthy meal bowl containing quinoa, chickpeas, beets",
+        description: "Holistic lifestyle reset for gut health, stable glucose levels, and immune resilience.",
+        highlights: [
+          "Whole-Food Variety",
+          "Micronutrient Tuning",
+          "Gut Diversity Index",
+          "Family Recipes"
+        ]
+      },
+      {
+        id: "pcos-friendly",
+        title: "PCOS-Friendly Plan",
+        price: 219,
+        period: "/mo",
+        category: "clinical",
+        badge: "Hormonal Wellness",
+        badgeIcon: "health_and_safety",
+        badgeVariant: "tertiary",
+        duration: "16 Weeks • Endocrine Care",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuB5SFY2_zAhMls6xQcc-x6r_wdJGkqRBFcokK3_aJ2Sj6Vfw2d-oJoDe49MPGQTmDLni22ZP4IRgEYGBcksygpRDWeGx-V6NVHgKHX1g_2hOms3bzbmI5xqUiICBhLo-MI29PMl6Y92FATXGg1CpuQO9wHhjFBIgjYW9iqNlyTlQn0fPLgRsjZKJf5zoehDoYIeMl5JLbOlQGv_mq17fLoARFGCAN4QoxaVVmckRWE",
+        imageAlt: "Anti-inflammatory nutrition bowl with organic blackberries, blueberries, pumpkin seeds",
+        description: "Targeted low-glycemic, anti-inflammatory protocols designed to balance insulin, androgen levels, and regulate cycles.",
+        highlights: [
+          "Insulin Sensitizers",
+          "Seed Cycling System",
+          "Cortisol Regulation",
+          "Endocrine Blood Panel"
+        ]
+      },
+      {
+        id: "sports-nutrition",
+        title: "Sports Nutrition Plan",
+        price: 199,
+        period: "/mo",
+        category: "athletic",
+        badge: "Performance",
+        badgeIcon: "bolt",
+        badgeVariant: "secondary",
+        duration: "Periodized Training",
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCUiZYBgVZBiEeuL0iGmdMLZuF7lrElXeXQ71IH_s5SYjvZ_PBmN28ODIt8mw0GURllxSrGJWhWlrAqopmjR5F6VZKG1hej-U2V7GWc7-_JOHDDun3hcajbGT884GK1WKFqsg9APXhAojrUWPvJ679TPIha87uSVP7G45V4SRaF0GziAiBpX0uyhYTtll_yYKFnQ6Fa5TgrFEncbe6P3SDol7VuYPcLQ4GyiY6KnGs",
+        imageAlt: "Athletic high-protein nutrient dense culinary dish with lean chicken breast, edamame, asparagus",
+        description: "High-performance fuel strategy focusing on glycogen replenishment, tissue repair, and endurance timing.",
+        highlights: [
+          "Pre/Post Timing",
+          "Electrolyte Mapping",
+          "Protein Synthesis",
+          "Hydration Protocols"
+        ]
+      }
+    ];
+
+    const SAMPLE_DAY_MEALS = {
+      breakfast: {
+        time: "08:00 AM • Energy Prime",
+        title: "Golden Chia Turmeric Oatmeal",
+        subtitle: "Crushed walnuts & fresh blueberries",
+        calories: 340,
+        protein: "14g",
+        carbs: "48g",
+        fats: "11g",
+        fiber: "9g",
+        insight: "Curcumin extract reduces morning oxidative stress."
+      },
+      lunch: {
+        time: "01:00 PM • Sustained Metabolism",
+        title: "Grilled Lemon Herb Protein Bowl",
+        subtitle: "Roasted sweet potato & steamed greens",
+        calories: 490,
+        protein: "38g",
+        carbs: "45g",
+        fats: "14g",
+        fiber: "8g",
+        insight: "Complex carbs provide steady afternoon mental focus."
+      },
+      snacks: {
+        time: "04:30 PM • Glucose Anchor",
+        title: "Pumpkin Seeds & Crisp Apple",
+        subtitle: "Paired with cinnamon almond butter",
+        calories: 210,
+        protein: "7g",
+        carbs: "22g",
+        fats: "12g",
+        fiber: "5g",
+        insight: "Zinc in pumpkin seeds aids thyroid hormone conversion."
+      },
+      dinner: {
+        time: "07:30 PM • Restorative Digest",
+        title: "Warm Lentil Vegetable Stew",
+        subtitle: "Baby spinach & toasted pumpkin seeds",
+        calories: 420,
+        protein: "22g",
+        carbs: "52g",
+        fats: "10g",
+        fiber: "14g",
+        insight: "High prebiotic fiber encourages nighttime microbiome flora."
+      }
+    };
+
+    const RECIPES = [
+      {
+        id: "oats-bowl",
+        title: "Oats Breakfast Bowl",
+        category: "breakfast",
+        categoryLabel: "Breakfast",
+        time: "10 mins",
+        calories: 310,
+        protein: "11g",
+        fiber: "9g",
+        tags: ["High Fiber • Heart Healthy", "11g Protein"],
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAycvckG_c8r_QuqwQFDSzX6D74IufNK6GDkVXOuu7M-rSE0fBvJbI_tLlEM-pngv0FmdaRmMuNmpsT4J__ee_8Uz1CDxn34i1k27GsUCcaOtQJ-joY2_itocKnbOdGMgLsLy2cqmdX_9HidpUlifc1V_R1-y8qxU-wlZyGv7dFJBbcvkhZKEIOswJv0QgBZtcrFU1xbcgcOQP0iHSuwWMbzLBjZ0_H3LevCW_A5uo",
+        ingredients: ["rolled oats", "blueberries", "chia seeds", "bananas", "almond slivers"],
+        fullIngredients: [
+          "1 cup gluten-free rolled oats",
+          "1.5 cups unsweetened almond or oat milk",
+          "1/2 cup fresh wild blueberries",
+          "1 tbsp chia seeds",
+          "1/2 ripe banana, sliced",
+          "1 tbsp slivered toasted almonds"
+        ],
+        instructions: [
+          "Simmer rolled oats with almond milk over medium heat for 6-8 minutes until creamy.",
+          "Remove from heat and fold in chia seeds; let sit for 2 minutes to thicken.",
+          "Transfer to a warm ceramic bowl and arrange banana slices and fresh blueberries across the surface.",
+          "Top with toasted almond slivers and serve warm."
+        ]
+      },
+      {
+        id: "paneer-salad",
+        title: "Paneer Protein Salad",
+        category: "lunch",
+        categoryLabel: "Lunch",
+        time: "15 mins",
+        calories: 385,
+        protein: "24g",
+        fiber: "6g",
+        isSpotlight: true,
+        tags: ["24g Protein • Vegetarian", "Spotlight Pick"],
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDcmDWTMX0QiyZ8OTdiZ6_Kr74wfEKsaL9QjxDbZaiVnjecJl8kN6sSNBbI-vvZC-9nNYJBBY36fXydiLWnKqAbz8fGKIwcrFIWtoCQUGv8vZnUD0k8Cwi-KpcaKTALWe-BhC5XWaW3_x1Ay1yesHi-PLmN2ldOU2lqKnqs_ylP3fjqeUsyPt39U340M66Nx4rdW0xy74hkPchwErK2hQdGrNgbNvA9tj4l1GN_jag",
+        ingredients: ["cottage cheese", "paneer", "cucumber", "cherry tomatoes", "herbs", "lemon", "olive oil"],
+        fullIngredients: [
+          "150g Low-fat cottage cheese (Paneer)",
+          "1 cup diced English cucumbers & cherry tomatoes",
+          "1 tbsp extra virgin olive oil & fresh lemon juice",
+          "1 tsp roasted cumin powder & fresh mint leaves"
+        ],
+        instructions: [
+          "Prep the Protein Base: Lightly saute or cube raw cottage cheese into 1/2-inch uniform pieces for optimal dressing absorption.",
+          "Crisp Veggie Medley: Toss crisp chopped cucumbers and halved cherry tomatoes together inside a pre-chilled ceramic bowl.",
+          "Emulsify Dressing: Whisk freshly squeezed lemon juice, olive oil, and roasted cumin powder until smooth; drizzle gently over bowl.",
+          "Garnish & Serve: Garnish generously with torn garden mint leaves and freshly cracked black peppercorns. Savor immediately."
+        ]
+      },
+      {
+        id: "vegetable-khichdi",
+        title: "Vegetable Khichdi",
+        category: "dinner",
+        categoryLabel: "Dinner",
+        time: "25 mins",
+        calories: 340,
+        protein: "14g",
+        fiber: "10g",
+        tags: ["Gut Healing • Easy Digest", "14g Protein"],
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuArfxXqi8WWIaC-p8pjlmu5-Z9fuxJJANI_rZmHvL5IKP45rFG3DV8WD24kO6quMVJlZQqpjEn7PEgHJIBhQ6pFSlrdUN0auTbfTJFkLAO6IgrdMm0NNUgfwwgKj7HyZJh5uD2yKqNb4KqK35bkoe1rs30qSeGorJWhH4C7LnBv4AsB4Si2ES0mV1pnSIqnkeKC0opx6_b_yxNBPmvle7uF4hpN7m_ERX7vfMgfjfs",
+        ingredients: ["yellow lentil", "rice", "turmeric", "cumin", "spinach", "carrots"],
+        fullIngredients: [
+          "1/2 cup yellow moong dal",
+          "1/2 cup brown basmati rice",
+          "1 cup chopped organic baby spinach",
+          "1/2 cup diced carrots and peas",
+          "1 tsp grass-fed ghee or olive oil"
+        ],
+        instructions: [
+          "Rinse moong dal and brown rice until water runs clear; soak for 15 minutes.",
+          "Warm ghee in a saucepan; temper cumin seeds and turmeric until aromatic.",
+          "Add soaked rice, lentils, diced carrots, and 3.5 cups water. Bring to a boil.",
+          "Lower heat, cover, and simmer for 18 minutes. Stir in baby spinach until wilted."
+        ]
+      },
+      {
+        id: "fruit-yogurt-bowl",
+        title: "Fruit Yogurt Bowl",
+        category: "breakfast",
+        categoryLabel: "Breakfast",
+        time: "5 mins",
+        calories: 260,
+        protein: "18g",
+        fiber: "7g",
+        tags: ["Probiotic Rich • Low Sugar", "18g Protein"],
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAvqFPSmTTnbdMbphT21oqCq8lugin8IekV5tP8DYua2dOJGx5i5H7m2qvuF2gwFjFqTOct0Ed03gXWmQ761mLKCjNf1GvMAt7LEAa0wJUbpSqi58kMngWSMbBhH0K90nsZZdygmCw-sdQL5sNC4pL5usPK7fvpFU13ACsd5NZOsa4F-_x3DN42ScDrpBUegLK9NnE0JdfuE1OGnqtA4VZZZplyoqI-tu7kEM9IbYY",
+        ingredients: ["greek yogurt", "pomegranate arils", "kiwi", "raw honey", "hemp seeds"],
+        fullIngredients: [
+          "1 cup plain Greek strained yogurt",
+          "1/3 cup fresh pomegranate arils",
+          "1 gold or green kiwi, thinly peeled and sliced",
+          "1 tsp raw meadow honey",
+          "1 tbsp organic hemp hearts"
+        ],
+        instructions: [
+          "Spoon Greek yogurt into the center of a chilled shallow bowl.",
+          "Arrange kiwi slices fan-wise alongside pomegranate arils.",
+          "Drizzle with raw meadow honey and scatter hemp hearts."
+        ]
+      },
+      {
+        id: "sprouts-chaat",
+        title: "Sprouts Chaat",
+        category: "snacks",
+        categoryLabel: "Snacks",
+        time: "10 mins",
+        calories: 190,
+        protein: "12g",
+        fiber: "8g",
+        tags: ["Immunity Boost • Zero Oil", "12g Protein"],
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCGVfbG0RBTzwPPqPW4zgx7SvtpGoGOLczaDI51536oJtqIyN_97lFTNW9deqx7vaIBVYm0fYnrIY_gYb463VF8NrDdeHORkWoEi0N4GMP3dg6utHoMYRtqY-mH3qM1BDQ2dtfMkQ6OezEICfhCrhEf5G90rYPiewv50dBr2H_g4_jqul-SUTKGVNAeykU544TC5XXB3i2g0aN9y8jZfcKCZ6x6KGvClKFpdn7-efw",
+        ingredients: ["sprouted moong beans", "chaat masala", "diced onions", "coriander", "fresh lime"],
+        fullIngredients: [
+          "1.5 cups freshly sprouted green moong beans",
+          "1/3 cup finely minced red shallots",
+          "1/2 cup deseeded Roma tomato, diced",
+          "2 tbsp fresh chopped cilantro",
+          "1/2 tsp chaat masala and lime juice"
+        ],
+        instructions: [
+          "Steam sprouted moong beans lightly for 3 minutes.",
+          "Toss warm beans with diced shallots, tomatoes, and cilantro in a mixing bowl.",
+          "Season with chaat masala and freshly squeezed lime juice."
+        ]
+      },
+      {
+        id: "green-glow-smoothie",
+        title: "Healthy Green Glow Smoothie",
+        category: "snacks",
+        categoryLabel: "Snacks",
+        time: "5 mins",
+        calories: 215,
+        protein: "4g",
+        fiber: "6g",
+        tags: ["Detoxifying • Vitamin C", "6g Fiber"],
+        image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAggeIX1jVRrP-LlWViDjn95amd_aa1et4DFpwb8wP5Sc4abf2MDUlb5Spb7IiyYq3M4baTYchqyjXcPlBshLXeEI4gdnXW6KIPchI-tQsFn3gRCXZyIA2HgyCmO8mfP6CxPTvigCIGljv8KBC9GZKupSOqMzPA6uRF9Uk22v-xsAGhK0aq2S5Im4ULrS1hoCmhpsxnFCWGb7_O-8IKs2MWvz6WG-gwyVcCpk5JJJU",
+        ingredients: ["baby spinach", "green apple", "cucumber", "ginger", "coconut water"],
+        fullIngredients: [
+          "2 cups organic tender baby spinach",
+          "1 crisp green apple, cored",
+          "1 Persian cucumber, sliced",
+          "1 inch fresh ginger rhizome",
+          "1 cup chilled coconut water"
+        ],
+        instructions: [
+          "Combine baby spinach and coconut water in a high-speed blender.",
+          "Add apple chunks, cucumber slices, and peeled fresh ginger.",
+          "Blend on high for 60 seconds until silk-smooth and emerald green."
+        ]
+      }
+    ];
+
+    const TESTIMONIALS = [
+      {
+        quote: "“NutriBloom transformed how I view food. Lost 14kg in 4 months while completely reversing my pre-diabetes markers without feeling deprived once.”",
+        author: "Sarah K.",
+        detail: "Metabolic Renewal Plan",
+        avatar: "SK",
+        dietitian: "Dr. Lauren Reed, RD"
+      },
+      {
+        quote: "“The customized anti-inflammatory menu finally cleared my chronic IBS symptoms. My daily energy levels haven't felt this consistent in 8 years.”",
+        author: "David M.",
+        detail: "Gut Restoration Track",
+        avatar: "DM",
+        dietitian: "Dr. Marcus Vance, MS"
+      },
+      {
+        quote: "“Navigating postpartum nutrition was overwhelming until NutriBloom structured every micronutrient target. Truly life-changing compassionate care.”",
+        author: "Elena R.",
+        detail: "Hormonal Balance Program",
+        avatar: "ER",
+        dietitian: "Claire Bennett, RD"
+      }
+    ];
+
+    const PHILOSOPHY_PILLARS = [
+      {
+        icon: "biotech",
+        title: "Evidence Over Trends",
+        description: "Clinical biochemistry guides our plans, never fleeting internet fads or temporary quick fixes."
+      },
+      {
+        icon: "fingerprint",
+        title: "Bio-Individuality",
+        description: "No two metabolisms or microbiomes are identical. Your therapeutic diet should be as distinct as your DNA."
+      },
+      {
+        icon: "all_inclusive",
+        title: "Sustainable Habits",
+        description: "Realistic meal planning that adapts to your work, family schedule, social life, and deep cultural roots."
+      }
+    ];
+
+    const SERVICES_SUMMARY = [
+      { icon: "person", title: "1-on-1 Clinical Consultations", description: "Direct therapeutic care and metabolic labs review." },
+      { icon: "microbiology", title: "Metabolic & Gut Health", description: "Microbiome repair and glucose sensitivity reset." },
+      { icon: "favorite", title: "Chronic Disease & PCOS", description: "Specialized endocrine and inflammation control." },
+      { icon: "groups", title: "Corporate Wellness", description: "Interactive seminars and preventative team workshops." }
+    ];
+
+    const QUIZ_QUESTIONS = [
+      {
+        id: 1,
+        question: "What is your primary wellness aspiration right now?",
+        options: [
+          { label: "Shed visceral fat & reboot energy", planId: "weight-management" },
+          { label: "Address hormonal balance, cycle irregularities, or PCOS", planId: "pcos-friendly" },
+          { label: "Build enduring whole-food eating habits & heal my gut", planId: "balanced-diet" },
+          { label: "Peak athletic endurance, recovery, & muscle synthesis", planId: "sports-nutrition" }
+        ]
+      },
+      {
+        id: 2,
+        question: "How do your energy levels typically trend throughout the day?",
+        options: [
+          { label: "Morning sluggishness followed by severe 3:00 PM slump" },
+          { label: "Spikes and crashes tied directly to meals" },
+          { label: "Low baseline stamina and chronic digestive heaviness" },
+          { label: "Generally solid, but struggling with post-workout recovery" }
+        ]
+      },
+      {
+        id: 3,
+        question: "What is your preferred relationship with meal preparation?",
+        options: [
+          { label: "Quick 10-15 minute recipes with minimal cleanup" },
+          { label: "Weekend batch prep and dynamic meal calendars" },
+          { label: "Flexible guidelines I can adapt while dining out" },
+          { label: "Precise gram-by-gram macro tracking and nutrient timing" }
+        ]
+      }
+    ];
+
+    /* --- Root Component --- */
+    function NutriBloomApp() {
+      const [currentTab, setCurrentTab] = useState('home');
+      const [toast, setToast] = useState({ visible: false, message: '' });
+      const [isConsultOpen, setIsConsultOpen] = useState(false);
+      const [isQuizOpen, setIsQuizOpen] = useState(false);
+      const [isJournalOpen, setIsJournalOpen] = useState(false);
+      const [activeRecipe, setActiveRecipe] = useState(null);
+      const [favorites, setFavorites] = useState({});
+      const [loggedMeals, setLoggedMeals] = useState([
+        { title: 'Oats Breakfast Bowl', calories: 310, protein: '11g', fiber: '9g', time: '08:15 AM' },
+        { title: 'Paneer Protein Salad', calories: 385, protein: '24g', fiber: '6g', time: '01:30 PM' }
+      ]);
+      const [waterGlasses, setWaterGlasses] = useState(4);
+
+      // Home Cadence State
+      const [cadenceLevel, setCadenceLevel] = useState(2);
+      const [testimonialIdx, setTestimonialIdx] = useState(0);
+
+      // Plans Category State
+      const [planCategory, setPlanCategory] = useState('all');
+      const [mealSlot, setMealSlot] = useState('breakfast');
+
+      // Recipes Search & Filter State
+      const [recipeQuery, setRecipeQuery] = useState('');
+      const [recipeCat, setRecipeCat] = useState('all');
+      const [spotlightChecked, setSpotlightChecked] = useState({});
+      const [spotlightLogged, setSpotlightLogged] = useState(false);
+
+      // About Form State
+      const [contactForm, setContactForm] = useState({ name: '', email: '', reason: 'weight', message: '' });
+      const [contactSent, setContactSent] = useState(false);
+
+      const showToast = (message) => {
+        setToast({ visible: true, message });
+        setTimeout(() => setToast({ visible: false, message: '' }), 3000);
+      };
+
+      const toggleFavorite = (id, title) => {
+        setFavorites((prev) => {
+          const next = !prev[id];
+          showToast(next ? `Saved "${title}" to your favorites!` : `Removed "${title}" from favorites`);
+          return { ...prev, [id]: next };
+        });
+      };
+
+      const logMealToJournal = (item) => {
+        const entry = typeof item === 'string'
+          ? { title: item, calories: 380, protein: '22g', fiber: '7g', time: 'Just now' }
+          : { title: item.title, calories: item.calories || 350, protein: item.protein || '20g', fiber: item.fiber || '6g', time: 'Just now' };
+        setLoggedMeals((prev) => [entry, ...prev]);
+        showToast(`Logged "${entry.title}" into Daily Nutrition Journal!`);
+      };
+
+      const cadenceData = cadenceLevel === 1
+        ? { label: "Gentle Reset", fiber: "26g / day", anti: "+78% Bioactive" }
+        : cadenceLevel === 2
+          ? { label: "Balanced Restoration", fiber: "32g / day", anti: "+94% Bioactive" }
+          : { label: "Athletic Vitality", fiber: "38g / day", anti: "+98% Bioactive" };
+
+      const filteredPlans = NUTRITION_PLANS.filter((p) => planCategory === 'all' || p.category === planCategory);
+      
+      const filteredRecipes = RECIPES.filter((r) => {
+        const matchesCat = recipeCat === 'all' || (recipeCat === 'favorites' ? !!favorites[r.id] : r.category === recipeCat);
+        const q = recipeQuery.toLowerCase().trim();
+        const matchesQuery = !q || r.title.toLowerCase().includes(q) || r.ingredients.some(i => i.toLowerCase().includes(q));
+        return matchesCat && matchesQuery;
+      });
+
+      const currentMeal = SAMPLE_DAY_MEALS[mealSlot];
+
+      return (
+        <div className="bg-surface text-on-surface min-h-screen flex flex-col relative font-sans">
+          
+          {/* Header */}
+          <header className="fixed top-0 w-full z-40 bg-surface/85 backdrop-blur-xl shadow-xs border-b border-surface-container/60 pt-safe">
+            <div className="max-w-6xl mx-auto h-16 px-4 md:px-8 flex items-center justify-between">
+              <button onClick={() => setCurrentTab('home')} className="flex items-center gap-2 group text-left">
+                <img alt="NutriBloom Logo" className="h-8 w-auto object-contain" src={BRAND_CONFIG.logoUrl} />
+                <div className="flex flex-col">
+                  <span className="font-semibold text-lg text-primary tracking-tight leading-tight">NutriBloom</span>
+                  <span className="text-[10px] text-secondary uppercase tracking-widest font-medium hidden md:inline">Clinical Wellness</span>
+                </div>
+              </button>
+
+              {/* Desktop Navigation */}
+              <nav className="hidden md:flex items-center gap-1 bg-surface-container-low p-1.5 rounded-full border border-surface-container">
+                {[
+                  { id: 'home', label: 'Home', icon: 'eco' },
+                  { id: 'plans', label: 'Plans', icon: 'assignment_turned_in' },
+                  { id: 'recipes', label: 'Recipes', icon: 'restaurant_menu' },
+                  { id: 'about', label: 'About Us', icon: 'spa' }
+                ].map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => setCurrentTab(item.id)}
+                    className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
+                      currentTab === item.id ? 'bg-primary text-on-primary shadow-xs' : 'text-on-surface-variant hover:text-primary'
+                    }`}
+                  >
+                    <span className="material-symbols-outlined text-[17px]">{item.icon}</span>
+                    <span>{item.label}</span>
+                  </button>
+                ))}
+              </nav>
+
+              {/* Action Buttons */}
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setIsJournalOpen(true)}
+                  title="Daily Nutrition Journal"
+                  className="relative w-10 h-10 rounded-full flex items-center justify-center text-primary bg-surface-container-low hover:bg-surface-container transition-all"
+                >
+                  <span className="material-symbols-outlined text-[20px]">menu_book</span>
+                  {loggedMeals.length > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-secondary text-on-secondary text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
+                      {loggedMeals.length}
+                    </span>
+                  )}
+                </button>
+
+                <button
+                  onClick={() => setIsConsultOpen(true)}
+                  title="Book Quick Clinical Consultation"
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-primary bg-surface-container-low hover:bg-surface-container transition-all"
+                >
+                  <span className="material-symbols-outlined text-[20px]">support_agent</span>
+                </button>
+
+                <div onClick={() => setCurrentTab('about')} className="relative cursor-pointer w-10 h-10 flex items-center justify-center">
+                  <img src={BRAND_CONFIG.leadDietitianAvatar} alt="Dr. Elena Vance" className="w-8 h-8 rounded-full object-cover ring-2 ring-secondary-container" />
+                  <span className="absolute top-1 right-1 flex h-2.5 w-2.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-secondary"></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </header>
+
+          {/* Toast Banner */}
+          {toast.visible && (
+            <div className="fixed top-20 left-4 right-4 max-w-md mx-auto z-50 flex items-center justify-between p-3 bg-primary text-on-primary rounded-full shadow-botanical-lg border border-primary-container">
+              <div className="flex items-center gap-2 pl-1">
+                <span className="material-symbols-outlined text-[19px] text-primary-fixed">check_circle</span>
+                <span className="text-xs font-semibold">{toast.message}</span>
+              </div>
+              <button onClick={() => setToast({ visible: false, message: '' })} className="w-6 h-6 rounded-full flex items-center justify-center bg-primary-container text-on-primary">
+                <span className="material-symbols-outlined text-[14px]">close</span>
+              </button>
+            </div>
+          )}
+
+          {/* Main Body */}
+          <main className="flex-1 w-full pt-20 pb-24 md:pb-16">
+            
+            {/* --- HOME PAGE --- */}
+            {currentTab === 'home' && (
+              <div className="flex flex-col max-w-5xl mx-auto px-4 md:px-8 gap-8">
+                {/* Hero */}
+                <section className="pt-6 pb-4 flex flex-col items-start gap-4">
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-primary text-xs font-medium border border-surface-container-high">
+                    <span className="material-symbols-outlined text-[15px] text-secondary">verified</span>
+                    <span>Certified Clinical Dietetics</span>
+                  </div>
+                  <h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-on-surface leading-tight">
+                    Nourish Your Body. <br />
+                    <span className="text-primary italic font-serif">Transform Your Life.</span>
+                  </h1>
+                  <p className="text-sm md:text-base text-on-surface-variant max-w-xl leading-relaxed">
+                    Personalized, evidence-based nutrition plans and wholesome dietitian-crafted meals to heal your gut, optimize energy, and sustain long-term vitality.
+                  </p>
+                  <div className="flex flex-col sm:flex-row w-full sm:w-auto gap-3 pt-2">
+                    <button onClick={() => setCurrentTab('plans')} className="py-3 px-6 rounded-full bg-primary text-on-primary text-sm font-semibold flex items-center justify-center gap-2 shadow-md hover:bg-primary-container">
+                      <span>Explore Nutrition Plans</span>
+                      <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+                    </button>
+                    <button onClick={() => setCurrentTab('recipes')} className="py-3 px-6 rounded-full bg-surface-container text-primary text-sm font-semibold flex items-center justify-center gap-2 hover:bg-surface-container-high">
+                      <span className="material-symbols-outlined text-[18px]">restaurant_menu</span>
+                      <span>Discover Recipes</span>
+                    </button>
+                  </div>
+
+                  {/* Trust Bar */}
+                  <div className="w-full mt-4 p-4 rounded-2xl bg-surface-container-lowest shadow-botanical flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border border-surface-container-low">
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-full bg-secondary-container flex items-center justify-center text-primary">
+                        <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                      </div>
+                      <div>
+                        <div className="text-sm font-semibold text-on-surface">4.9/5 Rating</div>
+                        <div className="text-xs text-on-surface-variant">1,200+ clients healed</div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-secondary">
+                        <span className="material-symbols-outlined text-[18px]">chips</span>
+                      </div>
+                      <div>
+                        <div className="text-sm font-semibold text-on-surface">100% Science</div>
+                        <div className="text-xs text-on-surface-variant">Peer-reviewed protocols</div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-9 h-9 rounded-full bg-secondary-fixed flex items-center justify-center text-primary">
+                        <span className="material-symbols-outlined text-[18px]">verified_user</span>
+                      </div>
+                      <div>
+                        <div className="text-sm font-semibold text-on-surface">Board Certified</div>
+                        <div className="text-xs text-on-surface-variant">Licensed Clinical Nutritionists</div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+
+                {/* Clinical Services Bento */}
+                <section className="flex flex-col gap-4">
+                  <div className="flex items-end justify-between">
+                    <div>
+                      <span className="text-xs text-secondary uppercase tracking-widest font-semibold">Targeted Care</span>
+                      <h2 className="text-xl font-semibold text-on-surface">Clinical Services</h2>
+                    </div>
+                    <button onClick={() => setCurrentTab('plans')} className="text-xs text-primary font-semibold flex items-center gap-0.5 hover:underline">
+                      All Services <span className="material-symbols-outlined text-[16px]">chevron_right</span>
+                    </button>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {CLINICAL_SERVICES.map((s) => (
+                      <div key={s.id} className="p-5 rounded-3xl bg-surface-container-lowest shadow-botanical flex flex-col justify-between gap-3 border border-surface-container-low">
+                        <div className="flex items-center justify-between">
+                          <div className={`w-11 h-11 rounded-2xl ${s.iconBg} ${s.iconColor} flex items-center justify-center`}>
+                            <span className="material-symbols-outlined text-[22px]">{s.icon}</span>
+                          </div>
+                          <span className="px-2.5 py-0.5 rounded-full bg-surface-container-low text-on-surface-variant text-xs font-medium">{s.tag}</span>
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-base text-on-surface">{s.title}</h3>
+                          <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">{s.description}</p>
+                        </div>
+                        <div className="pt-2 flex items-center justify-between border-t border-surface-container-low">
+                          <span className="text-xs text-secondary font-medium">{s.highlight}</span>
+                          <button onClick={() => setCurrentTab('plans')} className="text-xs text-primary font-semibold flex items-center gap-1 hover:underline">
+                            Learn More <span className="material-symbols-outlined text-[15px]">arrow_forward</span>
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+
+                {/* Cadence Balance Slider Micro-Widget */}
+                <section className="p-6 rounded-3xl bg-secondary-container/40 border border-secondary-container flex flex-col gap-4">
+                  <div className="flex items-center gap-2 text-primary font-semibold text-xs tracking-wider uppercase">
+                    <span className="material-symbols-outlined text-[18px]">tune</span>
+                    <span>Your Balance Baseline</span>
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-semibold text-on-surface">Adjust your daily activity goal</h3>
+                    <p className="text-xs text-on-surface-variant">See immediate projected cellular renewal support.</p>
+                  </div>
+                  <div className="flex flex-col gap-2 max-w-md">
+                    <div className="flex justify-between items-center text-xs">
+                      <span className="text-on-surface-variant">Target Lifestyle Cadence</span>
+                      <span className="font-bold text-primary px-3 py-1 bg-white rounded-full shadow-xs">{cadenceData.label}</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="1"
+                      max="3"
+                      value={cadenceLevel}
+                      onChange={(e) => setCadenceLevel(Number(e.target.value))}
+                      className="w-full accent-primary h-2 bg-surface-container-highest rounded-full cursor-pointer"
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-3 max-w-md pt-1">
+                    <div className="p-3 rounded-2xl bg-white shadow-xs border border-surface-container flex flex-col">
+                      <span className="text-[11px] text-on-surface-variant">Recommended Fiber</span>
+                      <span className="text-lg font-bold text-primary mt-0.5">{cadenceData.fiber}</span>
+                    </div>
+                    <div className="p-3 rounded-2xl bg-white shadow-xs border border-surface-container flex flex-col">
+                      <span className="text-[11px] text-on-surface-variant">Anti-Inflammatory Index</span>
+                      <span className="text-lg font-bold text-secondary mt-0.5">{cadenceData.anti}</span>
+                    </div>
+                  </div>
+                </section>
+
+                {/* Testimonial Carousel */}
+                <section className="flex flex-col gap-3">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-xs text-secondary uppercase tracking-widest font-semibold">Patient Journey</span>
+                      <h2 className="text-xl font-semibold text-on-surface">Transformative Outcomes</h2>
+                    </div>
+                    <div className="flex gap-1.5">
+                      <button onClick={() => setTestimonialIdx((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)} className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary">
+                        <span className="material-symbols-outlined text-[18px]">chevron_left</span>
+                      </button>
+                      <button onClick={() => setTestimonialIdx((prev) => (prev + 1) % TESTIMONIALS.length)} className="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary">
+                        <span className="material-symbols-outlined text-[18px]">chevron_right</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div className="p-6 rounded-3xl bg-surface-container-lowest shadow-botanical flex flex-col gap-4 border border-surface-container-low">
+                    <div className="flex items-center justify-between">
+                      <div className="flex text-secondary">
+                        {[...Array(5)].map((_, i) => (
+                          <span key={i} className="material-symbols-outlined text-[17px]" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+                        ))}
+                      </div>
+                      <span className="px-2.5 py-0.5 rounded-full bg-secondary-container text-primary text-xs font-semibold flex items-center gap-1">
+                        <span className="material-symbols-outlined text-[14px]">verified</span>
+                        Verified Patient
+                      </span>
+                    </div>
+                    <p className="text-base text-on-surface italic leading-relaxed">{TESTIMONIALS[testimonialIdx].quote}</p>
+                    <div className="p-3 rounded-2xl bg-surface-container-low flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-full bg-secondary-container text-primary font-bold flex items-center justify-center text-xs">
+                          {TESTIMONIALS[testimonialIdx].avatar}
+                        </div>
+                        <div>
+                          <div className="text-sm font-semibold text-on-surface">{TESTIMONIALS[testimonialIdx].author}</div>
+                          <div className="text-xs text-on-surface-variant">{TESTIMONIALS[testimonialIdx].detail}</div>
+                        </div>
+                      </div>
+                      <div className="text-right text-xs">
+                        <span className="text-secondary font-medium block">Dietitian</span>
+                        <span className="text-on-surface-variant">{TESTIMONIALS[testimonialIdx].dietitian}</span>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            )}
+
+            {/* --- PLANS PAGE --- */}
+            {currentTab === 'plans' && (
+              <div className="flex flex-col max-w-5xl mx-auto px-4 md:px-8 gap-8">
+                <section className="pt-6 flex flex-col gap-2">
+                  <div className="inline-flex items-center gap-1.5 self-start px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-xs font-semibold">
+                    <span className="material-symbols-outlined text-[15px]">verified</span>
+                    <span>Clinical Guidance</span>
+                  </div>
+                  <h1 className="text-3xl font-semibold text-primary">Find Your Perfect Nutrition Plan</h1>
+                  <p className="text-sm text-on-surface-variant max-w-2xl">Scientifically calibrated dietary regimens formulated by certified clinical nutritionists to match your medical history and lifestyle.</p>
+                  
+                  {/* Category Pills */}
+                  <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pt-3">
+                    {['all', 'clinical', 'lifestyle', 'athletic'].map((cat) => (
+                      <button
+                        key={cat}
+                        onClick={() => setPlanCategory(cat)}
+                        className={`px-4 py-2 rounded-full text-xs font-semibold capitalize shrink-0 transition-all ${
+                          planCategory === cat ? 'bg-primary text-on-primary shadow-xs' : 'bg-surface-container-low text-primary hover:bg-surface-container'
+                        }`}
+                      >
+                        {cat === 'all' ? 'All Plans' : cat === 'clinical' ? 'Medical / Clinical' : cat}
+                      </button>
+                    ))}
+                  </div>
+                </section>
+
+                {/* Plan Cards Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {filteredPlans.map((plan) => (
+                    <article key={plan.id} className="bg-surface-container-lowest rounded-3xl overflow-hidden shadow-botanical flex flex-col border border-surface-container-low">
+                      <div className="relative w-full h-48 bg-surface-container">
+                        <img src={plan.image} alt={plan.title} className="w-full h-full object-cover" />
+                        <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-primary text-on-primary text-xs font-semibold shadow-xs">
+                          {plan.badge}
+                        </span>
+                        <span className="absolute bottom-3 right-3 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-primary text-xs font-medium shadow-xs">
+                          {plan.duration}
+                        </span>
+                      </div>
+                      <div className="p-6 flex flex-col justify-between gap-4 flex-1">
+                        <div>
+                          <div className="flex items-baseline justify-between">
+                            <h3 className="text-lg font-bold text-on-surface">{plan.title}</h3>
+                            <span className="text-lg font-bold text-primary">${plan.price}<span className="text-xs text-on-surface-variant font-normal">{plan.period}</span></span>
+                          </div>
+                          <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">{plan.description}</p>
+                          <div className="mt-3 p-3 rounded-2xl bg-surface-container-low flex flex-col gap-2">
+                            <span className="text-[11px] font-semibold text-secondary uppercase tracking-wider">Clinical Highlights</span>
+                            <div className="grid grid-cols-2 gap-2 text-xs">
+                              {plan.highlights.map((h, i) => (
+                                <div key={i} className="flex items-center gap-1.5 text-on-surface truncate">
+                                  <span className="material-symbols-outlined text-[15px] text-secondary">check_circle</span>
+                                  <span className="truncate">{h}</span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                        <button onClick={() => setIsConsultOpen(true)} className="w-full py-3.5 rounded-full bg-primary hover:bg-primary-container text-on-primary text-xs font-semibold flex items-center justify-center gap-2 shadow-xs transition-all">
+                          <span>View Plan & Consultation</span>
+                          <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                        </button>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+
+                {/* Sample Day Timeline */}
+                <section className="p-6 rounded-3xl bg-surface-container-low border border-surface-container flex flex-col gap-4">
+                  <div>
+                    <span className="text-xs text-secondary uppercase font-semibold">Nutrition In Action</span>
+                    <h2 className="text-xl font-bold text-primary">Sample Balanced Day On NutriBloom</h2>
+                  </div>
+                  <div className="grid grid-cols-4 gap-1 p-1 bg-surface-container rounded-full max-w-md">
+                    {['breakfast', 'lunch', 'snacks', 'dinner'].map((s) => (
+                      <button
+                        key={s}
+                        onClick={() => setMealSlot(s)}
+                        className={`py-1.5 rounded-full text-xs font-semibold capitalize transition-all ${
+                          mealSlot === s ? 'bg-primary text-on-primary shadow-xs' : 'text-on-surface-variant hover:text-primary'
+                        }`}
+                      >
+                        {s}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="p-5 rounded-2xl bg-white shadow-botanical border border-surface-container flex flex-col gap-3">
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <span className="text-xs text-secondary font-semibold uppercase">{currentMeal.time}</span>
+                        <h4 className="text-base font-bold text-on-surface mt-0.5">{currentMeal.title}</h4>
+                        <span className="text-xs text-on-surface-variant">{currentMeal.subtitle}</span>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-xl font-bold text-primary">{currentMeal.calories}</span>
+                        <span className="text-[11px] text-on-surface-variant block">kcal</span>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-4 gap-2 bg-surface-container-low p-3 rounded-xl text-center text-xs">
+                      <div><span className="text-on-surface-variant text-[10px]">Protein</span><div className="font-bold text-primary">{currentMeal.protein}</div></div>
+                      <div><span className="text-on-surface-variant text-[10px]">Carbs</span><div className="font-bold text-primary">{currentMeal.carbs}</div></div>
+                      <div><span className="text-on-surface-variant text-[10px]">Fats</span><div className="font-bold text-primary">{currentMeal.fats}</div></div>
+                      <div><span className="text-on-surface-variant text-[10px]">Fiber</span><div className="font-bold text-secondary">{currentMeal.fiber}</div></div>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs text-on-surface-variant">
+                      <span className="material-symbols-outlined text-[16px] text-secondary">tips_and_updates</span>
+                      <span>{currentMeal.insight}</span>
+                    </div>
+                  </div>
+                </section>
+
+                {/* 2-Min Quiz Banner */}
+                <section className="p-6 md:p-8 rounded-3xl bg-primary text-on-primary flex flex-col gap-3 shadow-botanical-lg">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-primary-fixed">Personalized Assessment</span>
+                  <h3 className="text-2xl font-bold">Not sure which plan fits your body?</h3>
+                  <p className="text-xs md:text-sm text-on-primary-container max-w-xl">Every metabolism is unique. Answer a few lifestyle questions to uncover your customized nutritional path.</p>
+                  <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                    <button onClick={() => setIsQuizOpen(true)} className="py-3 px-6 rounded-full bg-white text-primary text-xs font-bold flex items-center justify-center gap-2 shadow-xs">
+                      <span className="material-symbols-outlined text-[18px]">quiz</span>
+                      <span>Take 2-Min Nutrition Quiz</span>
+                    </button>
+                    <button onClick={() => setIsConsultOpen(true)} className="py-3 px-6 rounded-full bg-primary-container text-on-primary text-xs font-bold flex items-center justify-center gap-2 border border-white/20">
+                      <span className="material-symbols-outlined text-[18px]">calendar_today</span>
+                      <span>Book Discovery Call</span>
+                    </button>
+                  </div>
+                </section>
+              </div>
+            )}
+
+            {/* --- RECIPES PAGE --- */}
+            {currentTab === 'recipes' && (
+              <div className="flex flex-col max-w-5xl mx-auto px-4 md:px-8 gap-8">
+                <section className="pt-6 flex flex-col gap-2">
+                  <div className="inline-flex items-center gap-1.5 self-start px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-xs font-semibold">
+                    <span className="material-symbols-outlined text-[15px]">nutrition</span>
+                    <span>Holistic Culinary Rx</span>
+                  </div>
+                  <h1 className="text-3xl font-semibold text-primary">Healthy Eating Made Delicious</h1>
+                  <p className="text-sm text-on-surface-variant max-w-xl">Dietitian-approved, nutrient-dense recipes made with fresh whole foods. Easy to prepare, delicious to savor.</p>
+                  
+                  {/* Search Bar */}
+                  <div className="relative w-full mt-3">
+                    <span className="material-symbols-outlined absolute left-3.5 top-3 text-[19px] text-primary">search</span>
+                    <input
+                      type="text"
+                      placeholder="Search healthy recipes, ingredients (e.g. oats, paneer, smoothie)..."
+                      value={recipeQuery}
+                      onChange={(e) => setRecipeQuery(e.target.value)}
+                      className="w-full pl-10 pr-10 py-3 rounded-2xl bg-white border border-surface-container text-sm text-on-surface shadow-botanical focus:outline-none focus:ring-2 focus:ring-secondary/20"
+                    />
+                    {recipeQuery && (
+                      <button onClick={() => setRecipeQuery('')} className="absolute right-3.5 top-3 text-outline">
+                        <span className="material-symbols-outlined text-[18px]">close</span>
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Category Pills */}
+                  <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pt-2">
+                    {[
+                      { id: 'all', label: 'All', icon: 'all_inclusive' },
+                      { id: 'favorites', label: `Favorites (${Object.values(favorites).filter(Boolean).length})`, icon: 'favorite' },
+                      { id: 'breakfast', label: 'Breakfast', icon: 'bakery_dining' },
+                      { id: 'lunch', label: 'Lunch', icon: 'lunch_dining' },
+                      { id: 'dinner', label: 'Dinner', icon: 'dinner_dining' },
+                      { id: 'snacks', label: 'Snacks', icon: 'local_cafe' }
+                    ].map((cat) => (
+                      <button
+                        key={cat.id}
+                        onClick={() => setRecipeCat(cat.id)}
+                        className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold shrink-0 transition-all ${
+                          recipeCat === cat.id ? 'bg-primary text-on-primary shadow-xs' : 'bg-surface-container-low text-on-surface-variant hover:bg-surface-container'
+                        }`}
+                      >
+                        <span className="material-symbols-outlined text-[16px]">{cat.icon}</span>
+                        <span>{cat.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                </section>
+
+                {/* Recipes Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                  {filteredRecipes.map((r) => {
+                    const isFav = !!favorites[r.id];
+                    return (
+                      <article key={r.id} onClick={() => setActiveRecipe(r)} className="p-3.5 rounded-3xl bg-white shadow-botanical flex flex-col gap-3 border border-surface-container-low hover:shadow-botanical-lg transition-all cursor-pointer group">
+                        <div className="relative w-full h-44 rounded-2xl overflow-hidden bg-surface-container">
+                          <img src={r.image} alt={r.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                          <span className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-white/90 backdrop-blur-md text-primary text-xs font-semibold shadow-xs">
+                            {r.categoryLabel}
+                          </span>
+                          <button
+                            onClick={(e) => { e.stopPropagation(); toggleFavorite(r.id, r.title); }}
+                            className={`absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center transition-colors shadow-xs ${
+                              isFav ? 'text-error' : 'text-on-surface-variant hover:text-error'
+                            }`}
+                          >
+                            <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: isFav ? "'FILL' 1" : "'FILL' 0" }}>
+                              {isFav ? 'favorite' : 'favorite_border'}
+                            </span>
+                          </button>
+                          <span className="absolute bottom-2.5 right-2.5 px-2.5 py-0.5 rounded-full bg-primary/90 text-on-primary text-xs font-semibold flex items-center gap-1">
+                            <span className="material-symbols-outlined text-[14px]">local_fire_department</span>
+                            {r.calories} kcal
+                          </span>
+                        </div>
+                        <div>
+                          <div className="flex items-center justify-between">
+                            <h4 className="font-semibold text-sm text-on-surface group-hover:text-primary transition-colors">{r.title}</h4>
+                            <span className="text-xs text-on-surface-variant flex items-center gap-0.5 shrink-0">
+                              <span className="material-symbols-outlined text-[14px]">schedule</span>{r.time}
+                            </span>
+                          </div>
+                          <div className="flex gap-1.5 mt-1.5 flex-wrap">
+                            {r.tags.map((t, i) => (
+                              <span key={i} className={`px-2 py-0.5 rounded-full text-[11px] font-medium ${i === 0 ? 'bg-secondary-container text-on-secondary-container' : 'bg-surface-container text-on-surface-variant'}`}>
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </article>
+                    );
+                  })}
+                </div>
+
+                {/* Spotlight Deep Dive (Paneer Salad) */}
+                <section className="p-6 rounded-3xl bg-white shadow-botanical-lg border border-surface-container-low flex flex-col gap-4">
+                  <div className="flex items-center justify-between">
+                    <span className="px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed text-xs font-semibold flex items-center gap-1">
+                      <span className="material-symbols-outlined text-[15px]">auto_awesome</span>
+                      Featured Recipe Spotlight
+                    </span>
+                    <span className="text-xs text-secondary font-medium">15 min total</span>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-primary">Paneer Protein Salad – Complete Breakdown</h3>
+                    <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">Crafted by NutriBloom dietitians to deliver slow-digesting casein protein paired with crisp hydrating vegetables and cold-pressed botanical lipids.</p>
+                  </div>
+
+                  {/* Concentric SVG Macro Gauge */}
+                  <div className="p-4 rounded-2xl bg-surface-container-low flex flex-col sm:flex-row items-center gap-4">
+                    <div className="relative w-20 h-20 shrink-0 flex items-center justify-center">
+                      <svg className="w-full h-full -rotate-90" viewBox="0 0 36 36">
+                        <circle cx="18" cy="18" fill="none" r="14" stroke="#E8F0EA" strokeWidth="3.5" />
+                        <circle cx="18" cy="18" fill="none" r="14" stroke="#69594b" strokeDasharray="22 78" strokeDashoffset="0" strokeWidth="3.5" />
+                        <circle cx="18" cy="18" fill="none" r="14" stroke="#41674c" strokeDasharray="26 74" strokeDashoffset="-22" strokeWidth="3.5" />
+                        <circle cx="18" cy="18" fill="none" r="14" stroke="#294b37" strokeDasharray="39 61" strokeDashoffset="-48" strokeWidth="3.5" />
+                      </svg>
+                      <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center">
+                        <span className="text-sm font-bold text-primary">24g</span>
+                        <span className="text-[9px] text-on-surface-variant leading-none">Protein</span>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-3 gap-2 flex-1 w-full text-center text-xs">
+                      <div className="p-2 bg-white rounded-xl shadow-xs"><span className="text-on-surface-variant block text-[10px]">Protein</span><span className="font-bold text-primary">24g</span></div>
+                      <div className="p-2 bg-white rounded-xl shadow-xs"><span className="text-on-surface-variant block text-[10px]">Healthy Fat</span><span className="font-bold text-secondary">14g</span></div>
+                      <div className="p-2 bg-white rounded-xl shadow-xs"><span className="text-on-surface-variant block text-[10px]">Carbs</span><span className="font-bold text-tertiary-container">18g</span></div>
+                    </div>
+                  </div>
+
+                  {/* Checkable Ingredients */}
+                  <div className="flex flex-col gap-2">
+                    <span className="text-xs font-semibold text-on-surface">Key Ingredients (Check off):</span>
+                    {[
+                      "150g Low-fat cottage cheese (Paneer)",
+                      "1 cup diced English cucumbers & cherry tomatoes",
+                      "1 tbsp extra virgin olive oil & fresh lemon juice",
+                      "1 tsp roasted cumin powder & fresh mint leaves"
+                    ].map((ing, idx) => (
+                      <label key={idx} onClick={() => setSpotlightChecked(p => ({ ...p, [idx]: !p[idx] }))} className="p-2.5 rounded-xl bg-surface-container-low flex items-center gap-3 cursor-pointer text-xs">
+                        <input type="checkbox" checked={!!spotlightChecked[idx]} onChange={() => {}} className="w-4 h-4 rounded text-primary accent-primary" />
+                        <span className={spotlightChecked[idx] ? 'line-through text-outline' : 'text-on-surface'}>{ing}</span>
+                      </label>
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={() => {
+                      logMealToJournal({ title: 'Paneer Protein Salad', calories: 385, protein: '24g', fiber: '6g' });
+                      setSpotlightLogged(true);
+                      setTimeout(() => setSpotlightLogged(false), 3000);
+                    }}
+                    className={`w-full py-3.5 rounded-full text-xs font-semibold flex items-center justify-center gap-2 shadow-xs transition-all ${
+                      spotlightLogged ? 'bg-secondary-container text-on-secondary-container' : 'bg-primary hover:bg-secondary text-on-primary'
+                    }`}
+                  >
+                    <span className="material-symbols-outlined text-[18px]">{spotlightLogged ? 'check_circle' : 'bookmark_add'}</span>
+                    <span>{spotlightLogged ? 'Added to your Daily Journal!' : 'Log into Daily Nutrition Journal'}</span>
+                  </button>
+                </section>
+              </div>
+            )}
+
+            {/* --- ABOUT US PAGE --- */}
+            {currentTab === 'about' && (
+              <div className="flex flex-col max-w-5xl mx-auto px-4 md:px-8 gap-8">
+                <section className="pt-6 flex flex-col gap-3">
+                  <div className="inline-flex items-center gap-1.5 self-start px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-xs font-semibold">
+                    <span className="material-symbols-outlined text-[15px]">nature_people</span>
+                    <span>Our Clinical Sanctuary</span>
+                  </div>
+                  <h1 className="text-3xl font-semibold text-primary">Your Partner in Better Nutrition</h1>
+                  <p className="text-sm text-on-surface-variant max-w-2xl leading-relaxed">
+                    Empowering individuals to heal, thrive, and sustain vibrant health through personalized clinical nutrition and mindful eating.
+                  </p>
+
+                  {/* Story Card */}
+                  <div className="p-5 rounded-3xl bg-white shadow-botanical border border-surface-container-low flex flex-col gap-2">
+                    <span className="text-xs font-bold text-secondary flex items-center gap-1">
+                      <span className="material-symbols-outlined text-[16px]">verified</span>
+                      The NutriBloom Story
+                    </span>
+                    <p className="text-xs text-on-surface leading-relaxed">
+                      NutriBloom was born out of shared frustration among clinical dietitians witnessing patient burnout from toxic diet culture, starvation routines, and erratic social media detoxes. We set out to bridge the gap between hospital-grade metabolic science and everyday kitchen warmth.
+                    </p>
+                    <div className="p-3 rounded-xl bg-surface-container-low flex items-center gap-2 mt-1">
+                      <span className="material-symbols-outlined text-primary text-[20px]">spa</span>
+                      <span className="text-xs text-primary italic font-serif">“Food is Medicine, Culture, and Joy.”</span>
+                    </div>
+                  </div>
+                </section>
+
+                {/* Lead Dietitian */}
+                <section className="p-6 rounded-3xl bg-white shadow-botanical border border-surface-container-low flex flex-col sm:flex-row items-center gap-4">
+                  <div className="relative w-24 h-24 rounded-full bg-surface-container-low p-1 shrink-0">
+                    <img src={BRAND_CONFIG.leadDietitianAvatar} alt="Dr. Elena Vance" className="w-full h-full rounded-full object-cover" />
+                    <span className="absolute bottom-0 right-0 bg-primary text-on-primary w-6 h-6 rounded-full flex items-center justify-center text-xs">
+                      <span className="material-symbols-outlined text-[14px]">medical_services</span>
+                    </span>
+                  </div>
+                  <div className="flex flex-col text-center sm:text-left">
+                    <h3 className="text-xl font-bold text-primary">Dr. Elena Vance, MS, RD, CDN</h3>
+                    <span className="text-xs text-secondary font-medium">Chief Clinical Dietitian & Functional Nutrition Specialist</span>
+                    <div className="flex flex-wrap justify-center sm:justify-start gap-1.5 mt-2">
+                      <span className="px-2.5 py-0.5 rounded-full bg-surface-container-low text-xs font-medium">MS Columbia Univ.</span>
+                      <span className="px-2.5 py-0.5 rounded-full bg-surface-container-low text-xs font-medium">10+ Yrs Exp.</span>
+                      <span className="px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-xs font-semibold">AND Member</span>
+                    </div>
+                  </div>
+                </section>
+
+                {/* Contact Form */}
+                <section className="p-6 rounded-3xl bg-white shadow-botanical-lg border border-surface-container-low flex flex-col gap-4">
+                  <div>
+                    <h3 className="text-lg font-bold text-primary">Start Your Nutrition Journey</h3>
+                    <p className="text-xs text-on-surface-variant">Send a direct inquiry to our clinical team.</p>
+                  </div>
+                  {!contactSent ? (
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        setContactSent(true);
+                        try { confetti({ particleCount: 50, spread: 60, origin: { y: 0.7 } }); } catch {}
+                        showToast('Consultation inquiry submitted successfully!');
+                      }}
+                      className="flex flex-col gap-3"
+                    >
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                          <label className="text-xs font-semibold text-on-surface block mb-1">Full Name</label>
+                          <input required type="text" value={contactForm.name} onChange={e => setContactForm({ ...contactForm, name: e.target.value })} placeholder="e.g. Jane Doe" className="w-full px-3 py-2 rounded-xl bg-surface-container-low text-xs border border-transparent focus:bg-white focus:border-secondary focus:outline-none" />
+                        </div>
+                        <div>
+                          <label className="text-xs font-semibold text-on-surface block mb-1">Email</label>
+                          <input required type="email" value={contactForm.email} onChange={e => setContactForm({ ...contactForm, email: e.target.value })} placeholder="jane@example.com" className="w-full px-3 py-2 rounded-xl bg-surface-container-low text-xs border border-transparent focus:bg-white focus:border-secondary focus:outline-none" />
+                        </div>
+                      </div>
+                      <div>
+                        <label className="text-xs font-semibold text-on-surface block mb-1">Reason for Consultation</label>
+                        <select value={contactForm.reason} onChange={e => setContactForm({ ...contactForm, reason: e.target.value })} className="w-full px-3 py-2 rounded-xl bg-surface-container-low text-xs border border-transparent focus:bg-white focus:border-secondary focus:outline-none">
+                          <option value="weight">Weight Management</option>
+                          <option value="pcos">PCOS & Hormones</option>
+                          <option value="gut">Gut Health</option>
+                          <option value="inquiry">General Inquiry</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="text-xs font-semibold text-on-surface block mb-1">Message</label>
+                        <textarea rows="3" value={contactForm.message} onChange={e => setContactForm({ ...contactForm, message: e.target.value })} placeholder="Tell us about your health goals..." className="w-full px-3 py-2 rounded-xl bg-surface-container-low text-xs border border-transparent focus:bg-white focus:border-secondary focus:outline-none" />
+                      </div>
+                      <button type="submit" className="w-full py-3 rounded-full bg-primary hover:bg-primary-container text-on-primary text-xs font-semibold flex items-center justify-center gap-2 shadow-xs">
+                        <span>Send Consultation Request</span>
+                        <span className="material-symbols-outlined text-[16px]">send</span>
+                      </button>
+                    </form>
+                  ) : (
+                    <div className="p-6 rounded-2xl bg-secondary-container text-on-secondary-container text-center flex flex-col items-center gap-2">
+                      <span className="material-symbols-outlined text-[32px] text-primary">task_alt</span>
+                      <h4 className="font-bold text-base text-primary">Request Received</h4>
+                      <p className="text-xs">Thank you! Our clinical coordinator will reach out within 24 business hours.</p>
+                      <button onClick={() => setContactSent(false)} className="text-xs text-primary underline font-semibold mt-1">Send Another Inquiry</button>
+                    </div>
+                  )}
+                </section>
+              </div>
+            )}
+          </main>
+
+          {/* Bottom Navigation for Mobile */}
+          <nav className="fixed bottom-0 w-full z-40 pb-safe bg-surface/90 backdrop-blur-xl border-t border-surface-container md:hidden">
+            <div className="flex items-center justify-around h-16 max-w-lg mx-auto">
+              {[
+                { id: 'home', label: 'Home', icon: 'eco' },
+                { id: 'plans', label: 'Plans', icon: 'assignment_turned_in' },
+                { id: 'recipes', label: 'Recipes', icon: 'restaurant_menu' },
+                { id: 'about', label: 'About Us', icon: 'spa' }
+              ].map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => setCurrentTab(item.id)}
+                  className={`flex flex-col items-center justify-center flex-1 py-1 transition-all ${
+                    currentTab === item.id ? 'text-primary font-semibold' : 'text-on-surface-variant'
+                  }`}
+                >
+                  <div className={`px-3 py-0.5 rounded-full transition-all ${currentTab === item.id ? 'bg-secondary-container' : ''}`}>
+                    <span className="material-symbols-outlined text-[22px]">{item.icon}</span>
+                  </div>
+                  <span className="text-[11px] mt-0.5">{item.label}</span>
+                </button>
+              ))}
+            </div>
+          </nav>
+
+          {/* Quick Consultation Modal */}
+          {isConsultOpen && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs">
+              <div className="bg-white rounded-3xl p-6 max-w-md w-full shadow-botanical-lg flex flex-col gap-4 relative">
+                <button onClick={() => setIsConsultOpen(false)} className="absolute top-4 right-4 text-outline hover:text-primary">
+                  <span className="material-symbols-outlined text-[20px]">close</span>
+                </button>
+                <div className="flex items-center gap-2.5">
+                  <div className="w-10 h-10 rounded-2xl bg-secondary-container text-primary flex items-center justify-center">
+                    <span className="material-symbols-outlined text-[22px]">support_agent</span>
+                  </div>
+                  <div>
+                    <span className="text-xs text-secondary font-semibold uppercase">Clinical Intake</span>
+                    <h3 className="text-lg font-bold text-primary">Book 1:1 Discovery Call</h3>
+                  </div>
+                </div>
+                <p className="text-xs text-on-surface-variant">Complimentary 15-minute diagnostic session with Dr. Elena Vance's clinical team.</p>
+                <form
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setIsConsultOpen(false);
+                    try { confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } }); } catch {}
+                    showToast('Appointment booked! Confirmation sent to your email.');
+                  }}
+                  className="flex flex-col gap-2.5"
+                >
+                  <input required placeholder="Your Name" className="w-full px-3 py-2 rounded-xl bg-surface-container-low text-xs border border-transparent focus:bg-white focus:border-secondary focus:outline-none" />
+                  <input required type="email" placeholder="Email Address" className="w-full px-3 py-2 rounded-xl bg-surface-container-low text-xs border border-transparent focus:bg-white focus:border-secondary focus:outline-none" />
+                  <input required type="tel" placeholder="Phone Number" className="w-full px-3 py-2 rounded-xl bg-surface-container-low text-xs border border-transparent focus:bg-white focus:border-secondary focus:outline-none" />
+                  <button type="submit" className="w-full mt-2 py-3 rounded-full bg-primary text-on-primary text-xs font-semibold shadow-xs">
+                    Confirm Diagnostic Appointment
+                  </button>
+                </form>
+              </div>
+            </div>
+          )}
+
+          {/* 2-Min Quiz Modal */}
+          {isQuizOpen && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs">
+              <div className="bg-white rounded-3xl p-6 max-w-md w-full shadow-botanical-lg flex flex-col gap-4 relative">
+                <button onClick={() => setIsQuizOpen(false)} className="absolute top-4 right-4 text-outline hover:text-primary">
+                  <span className="material-symbols-outlined text-[20px]">close</span>
+                </button>
+                <div className="flex items-center gap-2 text-xs font-semibold text-secondary uppercase">
+                  <span className="material-symbols-outlined text-[16px]">psychology_alt</span>
+                  <span>Clinical Diagnostic Quiz</span>
+                </div>
+                <h3 className="text-lg font-bold text-on-surface">What is your primary wellness aspiration right now?</h3>
+                <div className="flex flex-col gap-2 pt-1">
+                  {QUIZ_QUESTIONS[0].options.map((opt, i) => (
+                    <button
+                      key={i}
+                      onClick={() => {
+                        setIsQuizOpen(false);
+                        setCurrentTab('plans');
+                        try { confetti({ particleCount: 50, spread: 60, origin: { y: 0.6 } }); } catch {}
+                        showToast(`Quiz Completed! Recommended Plan: ${opt.label}`);
+                      }}
+                      className="p-3 rounded-2xl bg-surface-container-low hover:bg-secondary-container hover:text-primary text-left text-xs font-medium transition-all flex items-center justify-between"
+                    >
+                      <span>{opt.label}</span>
+                      <span className="material-symbols-outlined text-[16px]">chevron_right</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Recipe Detail Modal */}
+          {activeRecipe && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs overflow-y-auto">
+              <div className="bg-white rounded-3xl max-w-xl w-full shadow-botanical-lg overflow-hidden flex flex-col my-auto relative">
+                <div className="relative w-full h-52 bg-surface-container">
+                  <img src={activeRecipe.image} alt={activeRecipe.title} className="w-full h-full object-cover" />
+                  <button onClick={() => setActiveRecipe(null)} className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 text-outline flex items-center justify-center">
+                    <span className="material-symbols-outlined text-[18px]">close</span>
+                  </button>
+                  <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between text-white drop-shadow-md">
+                    <div>
+                      <span className="px-2.5 py-0.5 rounded-full bg-white/90 text-primary text-xs font-semibold">{activeRecipe.categoryLabel}</span>
+                      <h3 className="text-xl font-bold mt-1">{activeRecipe.title}</h3>
+                    </div>
+                    <span className="bg-primary px-3 py-1 rounded-full text-xs font-bold">{activeRecipe.calories} kcal</span>
+                  </div>
+                </div>
+                <div className="p-6 flex flex-col gap-4 max-h-[70vh] overflow-y-auto no-scrollbar">
+                  <div className="grid grid-cols-4 gap-2 bg-surface-container-low p-3 rounded-2xl text-center text-xs">
+                    <div><span className="text-[10px] text-on-surface-variant">Protein</span><div className="font-bold text-primary">{activeRecipe.protein}</div></div>
+                    <div><span className="text-[10px] text-on-surface-variant">Carbs</span><div className="font-bold text-primary">35g</div></div>
+                    <div><span className="text-[10px] text-on-surface-variant">Fats</span><div className="font-bold text-primary">12g</div></div>
+                    <div><span className="text-[10px] text-on-surface-variant">Fiber</span><div className="font-bold text-secondary">{activeRecipe.fiber}</div></div>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <span className="text-xs font-bold text-on-surface">Ingredients Checklist:</span>
+                    {(activeRecipe.fullIngredients || activeRecipe.ingredients).map((ing, i) => (
+                      <div key={i} className="p-2.5 rounded-xl bg-surface-container-low text-xs text-on-surface flex items-center gap-2">
+                        <span className="material-symbols-outlined text-[16px] text-secondary">check</span>
+                        <span>{ing}</span>
+                      </div>
+                    ))}
+                  </div>
+                  {activeRecipe.instructions && (
+                    <div className="flex flex-col gap-2">
+                      <span className="text-xs font-bold text-on-surface">Instructions:</span>
+                      {activeRecipe.instructions.map((step, i) => (
+                        <div key={i} className="text-xs text-on-surface-variant leading-relaxed">
+                          <strong>{i + 1}.</strong> {step}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <button
+                    onClick={() => {
+                      logMealToJournal(activeRecipe);
+                      setActiveRecipe(null);
+                    }}
+                    className="w-full py-3 rounded-full bg-primary text-on-primary text-xs font-semibold flex items-center justify-center gap-1.5 shadow-xs"
+                  >
+                    <span className="material-symbols-outlined text-[18px]">bookmark_add</span>
+                    <span>Log into Daily Nutrition Journal</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Daily Journal Modal */}
+          {isJournalOpen && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-xs overflow-y-auto">
+              <div className="bg-white rounded-3xl max-w-lg w-full shadow-botanical-lg overflow-hidden flex flex-col my-auto relative">
+                <div className="p-5 bg-surface-container-low border-b border-surface-container flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-10 h-10 rounded-2xl bg-secondary-container text-primary flex items-center justify-center">
+                      <span className="material-symbols-outlined text-[22px]">menu_book</span>
+                    </div>
+                    <div>
+                      <span className="text-xs text-secondary font-semibold uppercase">Daily Tracker</span>
+                      <h3 className="text-lg font-bold text-primary">Nutrition Journal</h3>
+                    </div>
+                  </div>
+                  <button onClick={() => setIsJournalOpen(false)} className="text-outline hover:text-primary">
+                    <span className="material-symbols-outlined text-[20px]">close</span>
+                  </button>
+                </div>
+                <div className="p-6 flex flex-col gap-5 max-h-[75vh] overflow-y-auto no-scrollbar">
+                  {/* Calorie Progress */}
+                  <div className="p-4 rounded-2xl bg-surface-container-low flex items-center justify-between">
+                    <div>
+                      <span className="text-xs text-on-surface-variant">Today's Intake</span>
+                      <div className="text-xl font-bold text-primary">{loggedMeals.reduce((a, m) => a + (m.calories || 0), 0)} / 2000 kcal</div>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-xs text-on-surface-variant">Protein</span>
+                      <div className="text-lg font-bold text-secondary">{loggedMeals.reduce((a, m) => a + (parseInt(m.protein, 10) || 0), 0)}g / 110g</div>
+                    </div>
+                  </div>
+
+                  {/* Water Tracker */}
+                  <div className="p-3.5 rounded-2xl bg-secondary-container/40 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="material-symbols-outlined text-[22px] text-secondary">water_drop</span>
+                      <div>
+                        <span className="text-xs font-semibold text-on-surface block">Hydration</span>
+                        <span className="text-[11px] text-on-surface-variant">{waterGlasses} of 8 glasses ({waterGlasses * 250} ml)</span>
+                      </div>
+                    </div>
+                    <button onClick={() => setWaterGlasses(p => Math.min(p + 1, 12))} className="px-3 py-1 rounded-full bg-primary text-on-primary text-xs font-semibold">
+                      +1 Glass
+                    </button>
+                  </div>
+
+                  {/* Logged Meals */}
+                  <div className="flex flex-col gap-2">
+                    <span className="text-xs font-bold text-on-surface">Logged Meals ({loggedMeals.length}):</span>
+                    {loggedMeals.map((m, idx) => (
+                      <div key={idx} className="p-3 rounded-2xl bg-surface-container-low flex items-center justify-between text-xs">
+                        <div>
+                          <div className="font-semibold text-on-surface">{m.title}</div>
+                          <div className="text-on-surface-variant">{m.calories} kcal • {m.protein} Protein • {m.time}</div>
+                        </div>
+                        <button onClick={() => setLoggedMeals(p => p.filter((_, i) => i !== idx))} className="text-outline hover:text-error">
+                          <span className="material-symbols-outlined text-[18px]">delete_outline</span>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<NutriBloomApp />);
+  </script>
+</body>
+</html>
